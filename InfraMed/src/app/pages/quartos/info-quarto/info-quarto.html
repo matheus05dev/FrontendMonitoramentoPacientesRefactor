@@ -1,0 +1,36 @@
+<h1>Informações do Quarto</h1>
+
+<div *ngIf="quarto" class="quarto-info">
+  <p><strong>Número:</strong> {{ quarto.numero }}</p>
+  <p><strong>Localização:</strong> {{ quarto.localizacao }}</p>
+  <p><strong>Tipo:</strong> {{ quarto.tipo }}</p>
+  <p><strong>Capacidade:</strong> {{ quarto.capacidade }}</p>
+  <p><strong>Pacientes Alocados:</strong> {{ quarto.pacientesIds.length }}</p>
+
+  <h3>Pacientes Alocados</h3>
+  <ul *ngIf="allocatedPatients.length > 0">
+    <li *ngFor="let p of allocatedPatients">
+      {{ p.nome }} <button (click)="removePaciente(p.id)" class="btn btn-danger btn-sm">Remover</button>
+    </li>
+  </ul>
+  <p *ngIf="allocatedPatients.length === 0">Nenhum paciente alocado.</p>
+
+  <div *ngIf="quarto && quarto.pacientesIds.length < quarto.capacidade">
+    <h3>Alocar Paciente</h3>
+    <div class="form-group">
+      <label for="pacienteAllocate">Selecione o Paciente:</label>
+      <select id="pacienteAllocate" [(ngModel)]="selectedAllocate" class="form-control">
+        <option value="">Selecione um paciente</option>
+        <option *ngFor="let p of availablePatients" [ngValue]="p">{{ p.nome }}</option>
+      </select>
+      <button (click)="allocatePaciente()" [disabled]="!selectedAllocate" class="btn btn-success">Alocar</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="edit()" class="btn btn-warning">Editar</button>
+    <button (click)="back()" class="btn btn-secondary">Voltar</button>
+  </div>
+</div>
+
+<div *ngIf="!quarto" class="loading">Carregando...</div>

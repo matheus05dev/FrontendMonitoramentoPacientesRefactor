@@ -1,0 +1,26 @@
+<h1>Detalhes do Funcionário</h1>
+
+<div *ngIf="funcionario">
+  <p><strong>Nome:</strong> {{ funcionario.nome }}</p>
+  <p><strong>Email:</strong> {{ funcionario.email }}</p>
+  <p><strong>Sexo:</strong> {{ funcionario.sexo }}</p>
+  <p><strong>Data de Nascimento:</strong> {{ funcionario.dataNascimento }}</p>
+  <p><strong>CPF:</strong> {{ funcionario.cpf }}</p>
+  <p><strong>Telefones:</strong></p>
+  <ul>
+    <li *ngFor="let tel of funcionario.telefones">({{ tel.ddd }}) {{ tel.numero }}</li>
+  </ul>
+  <p><strong>Cargo:</strong> {{ funcionario.cargo }}</p>
+  <p><strong>Especialidades:</strong> {{ funcionario.especialidades.join(', ') }}</p>
+  <p><strong>Identificação:</strong> {{ funcionario.identificacao }}</p>
+  <p><strong>Atendimentos IDs:</strong> {{ funcionario.atendimentosIds.join(', ') }}</p>
+  <p><strong>Atendimentos Complicação IDs:</strong> {{ funcionario.atendimentosComplicacaoIds.join(', ') }}</p>
+
+  <button (click)="edit()">Editar</button>
+  <button (click)="back()">Voltar</button>
+</div>
+
+<div *ngIf="!funcionario">
+  <p>Funcionário não encontrado.</p>
+  <button (click)="back()">Voltar</button>
+</div>

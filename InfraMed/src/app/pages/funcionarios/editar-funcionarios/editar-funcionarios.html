@@ -1,0 +1,68 @@
+<h1>Editar Funcionário</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" formControlName="nome">
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+  </div>
+
+  <div>
+    <label for="sexo">Sexo:</label>
+    <select id="sexo" formControlName="sexo">
+      <option *ngFor="let s of sexos" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input id="dataNascimento" type="date" formControlName="dataNascimento">
+  </div>
+
+  <div>
+    <label for="cpf">CPF:</label>
+    <input id="cpf" type="text" formControlName="cpf">
+  </div>
+
+  <div>
+    <label>Telefones:</label>
+    <div formArrayName="telefones">
+      <div *ngFor="let tel of telefones.controls; let i = index" [formGroupName]="i">
+        <input type="text" formControlName="DDD" placeholder="DDD">
+        <input type="text" formControlName="numero" placeholder="Número">
+        <button type="button" (click)="removeTelefone(i)">Remover</button>
+      </div>
+    </div>
+    <button type="button" (click)="addTelefone()">Adicionar Telefone</button>
+  </div>
+
+  <div>
+    <label for="cargo">Cargo:</label>
+    <select id="cargo" formControlName="cargo">
+      <option *ngFor="let c of cargos" [value]="c">{{ c }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Especialidades:</label>
+    <div formArrayName="especialidades">
+      <div *ngFor="let esp of especialidades.controls; let i = index">
+        <input type="text" [formControlName]="i">
+        <button type="button" (click)="removeEspecialidade(i)">Remover</button>
+      </div>
+    </div>
+    <button type="button" (click)="addEspecialidade()">Adicionar Especialidade</button>
+  </div>
+
+  <div>
+    <label for="identificacao">Identificação:</label>
+    <input id="identificacao" type="text" formControlName="identificacao">
+  </div>
+
+  <button type="submit" [disabled]="!form.valid">Atualizar</button>
+  <button type="button" (click)="cancel()">Cancelar</button>
+</form>

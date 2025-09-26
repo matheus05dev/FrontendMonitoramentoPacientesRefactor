@@ -1,0 +1,36 @@
+<h1>Lista de Quartos</h1>
+
+<button (click)="createQuarto()" class="btn btn-primary">Criar Novo Quarto</button>
+
+<div *ngIf="loading" class="loading">Carregando...</div>
+
+<table *ngIf="!loading && quartos.length > 0" class="table">
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>Localização</th>
+      <th>Tipo</th>
+      <th>Capacidade</th>
+      <th>Pacientes</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quarto of quartos">
+      <td>{{ quarto.numero }}</td>
+      <td>{{ quarto.localizacao }}</td>
+      <td>{{ quarto.tipo }}</td>
+      <td>{{ quarto.capacidade }}</td>
+      <td>{{ quarto.pacientesIds.length }}</td>
+      <td>
+        <button (click)="viewQuarto(quarto.id)" class="btn btn-info">Ver</button>
+        <button (click)="editQuarto(quarto.id)" class="btn btn-warning">Editar</button>
+        <button (click)="deleteQuarto(quarto.id)" class="btn btn-danger">Deletar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && quartos.length === 0" class="no-data">
+  <p>Nenhum quarto encontrado.</p>
+</div>

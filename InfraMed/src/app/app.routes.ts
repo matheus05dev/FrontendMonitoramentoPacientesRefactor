@@ -1,0 +1,69 @@
+import { Routes } from '@angular/router';
+import { Home } from './pages/home/home';
+import { ListarFuncionarios } from './pages/funcionarios/listar-funcionarios/listar-funcionarios';
+import { CriarFuncionarios } from './pages/funcionarios/criar-funcionarios/criar-funcionarios';
+import { EditarFuncionarios } from './pages/funcionarios/editar-funcionarios/editar-funcionarios';
+import { InfoFuncionarios } from './pages/funcionarios/info-funcionarios/info-funcionario';
+import { ListarPacientes } from './pages/pacientes/listar-pacientes/listar-pacientes';
+import { CriarPacientes } from './pages/pacientes/criar-pacientes/criar-pacientes';
+import { EditarPacientes } from './pages/pacientes/editar-pacientes/editar-pacientes';
+import { InfoPaciente } from './pages/pacientes/info-paciente/info-paciente';
+import { ListarQuartos } from './pages/quartos/listar-quartos/listar-quartos';
+import { CriarQuartos } from './pages/quartos/criar-quartos/criar-quartos';
+import { EditarQuartos } from './pages/quartos/editar-quartos/editar-quartos';
+import { InfoQuarto } from './pages/quartos/info-quarto/info-quarto';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: Home,
+  },
+  {
+    path: 'funcionarios',
+    component: ListarFuncionarios,
+  },
+  {
+    path: 'funcionarios/criar',
+    component: CriarFuncionarios,
+  },
+  {
+    path: 'funcionarios/editar/:id',
+    component: EditarFuncionarios,
+  },
+  {
+    path: 'funcionarios/info/:id',
+    component: InfoFuncionarios,
+  },
+  {
+    path: 'pacientes',
+    component: ListarPacientes,
+  },
+  {
+    path: 'pacientes/criar',
+    component: CriarPacientes,
+  },
+  {
+    path: 'pacientes/editar/:id',
+    component: EditarPacientes,
+  },
+  {
+    path: 'pacientes/info/:id',
+    component: InfoPaciente,
+  },
+  {
+    path: 'quartos',
+    component: ListarQuartos,
+  },
+  {
+    path: 'quartos/criar',
+    component: CriarQuartos,
+  },
+  {
+    path: 'quartos/editar/:id',
+    component: EditarQuartos,
+  },
+  {
+    path: 'quartos/info/:id',
+    component: InfoQuarto,
+  },
+];

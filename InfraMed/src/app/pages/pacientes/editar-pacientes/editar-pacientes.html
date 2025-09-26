@@ -1,0 +1,80 @@
+<h1>Editar Paciente</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <div class="form-group">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" formControlName="nome" class="form-control">
+    <div *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched" class="error">Nome é obrigatório.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error">
+      Email é obrigatório e deve ser válido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sexo">Sexo:</label>
+    <select id="sexo" formControlName="sexo" class="form-control">
+      <option value="">Selecione o sexo</option>
+      <option *ngFor="let sexo of sexos" [value]="sexo">{{ sexo }}</option>
+    </select>
+    <div *ngIf="form.get('sexo')?.invalid && form.get('sexo')?.touched" class="error">Sexo é obrigatório.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" formControlName="dataNascimento" class="form-control">
+    <div *ngIf="form.get('dataNascimento')?.invalid && form.get('dataNascimento')?.touched" class="error">Data de
+      nascimento é obrigatória.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" formControlName="cpf" placeholder="000.000.000-00" class="form-control">
+    <div *ngIf="form.get('cpf')?.invalid && form.get('cpf')?.touched" class="error">CPF é obrigatório e deve estar no
+      formato válido.</div>
+  </div>
+
+  <div formArrayName="telefones">
+    <h3>Telefones</h3>
+    <div *ngFor="let telefone of telefones.controls; let i = index" [formGroupName]="i"
+      class="form-group telefone-group">
+      <label>Telefone {{ i + 1 }}:</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" formControlName="ddd" placeholder="DDD (ex: 11)" maxlength="2" class="form-control">
+          <div *ngIf="telefone.get('ddd')?.invalid && telefone.get('ddd')?.touched" class="error">DDD é obrigatório (2
+            dígitos).</div>
+        </div>
+        <div class="col">
+          <input type="text" formControlName="numero" placeholder="Número (ex: 999999999)" maxlength="9"
+            class="form-control">
+          <div *ngIf="telefone.get('numero')?.invalid && telefone.get('numero')?.touched" class="error">Número é
+            obrigatório (9 dígitos).</div>
+        </div>
+        <div class="col-auto">
+          <button type="button" (click)="removeTelefone(i)" class="btn btn-danger">Remover</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addTelefone()" class="btn btn-secondary">Adicionar Telefone</button>
+  </div>
+
+  <div formArrayName="alergias">
+    <h3>Alergias</h3>
+    <div *ngFor="let alergia of alergias.controls; let i = index" class="form-group alergia-group">
+      <input type="text" [formControlName]="i" placeholder="Alergia {{ i + 1 }}" class="form-control">
+      <button type="button" (click)="removeAlergia(i)" class="btn btn-danger">Remover</button>
+      <div *ngIf="alergia.invalid && alergia.touched" class="error">Alergia é obrigatória.</div>
+    </div>
+    <button type="button" (click)="addAlergia()" class="btn btn-secondary">Adicionar Alergia</button>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Atualizar Paciente</button>
+    <button type="button" (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+  </div>
+</form>
