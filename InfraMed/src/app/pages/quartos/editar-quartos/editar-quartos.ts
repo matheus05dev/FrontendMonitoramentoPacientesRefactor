@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuartosService } from '../../../core/services/quartos';
+import { QuartosService } from '../../../core/services/quartos.service';
 import { QuartoRequest } from '../../../core/types/QuartoRequest';
 import { QuartoResponse } from '../../../core/types/QuartoResponse';
 import { LocalizacaoQuarto } from '../../../core/enum/LocalizacaoQuarto.enum';

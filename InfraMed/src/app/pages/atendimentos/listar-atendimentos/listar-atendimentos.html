@@ -1,1 +1,40 @@
-<p>listar-atendimentos works!</p>
+<div class="container">
+  <h2>Lista de Atendimentos</h2>
+
+  <button class="btn btn-primary mb-3" (click)="navegarParaCriar()">Novo Atendimento</button>
+
+  <div *ngIf="loading" class="alert alert-info">Carregando...</div>
+
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+  <table class="table table-striped" *ngIf="!loading && !error">
+    <thead>
+      <tr>
+        <th>Nome do Paciente</th>
+        <th>Médico Responsável</th>
+        <th>Status Paciente</th>
+        <th>Data de Entrada</th>
+        <th>Data de Saida</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let atendimento of atendimentos">
+        <td>{{atendimento.nomePaciente}}</td>
+        <td>{{atendimento.nomeMedicoResponsavel}}</td>
+        <td>{{atendimento.statusPaciente}}</td>
+        <td>{{atendimento.dataEntrada | date:'short'}}</td>
+        <td>{{atendimento.dataSaida | date:'short'}}</td>
+        <td>
+          <button class="btn btn-info btn-sm me-1" (click)="navegarParaInfo(atendimento.id!)">Ver</button>
+          <button class="btn btn-warning btn-sm me-1" (click)="navegarParaEditar(atendimento.id!)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deletarAtendimento(atendimento.id!)">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !error && atendimentos.length === 0" class="alert alert-warning">
+    Nenhum atendimento encontrado.
+  </div>
+</div>

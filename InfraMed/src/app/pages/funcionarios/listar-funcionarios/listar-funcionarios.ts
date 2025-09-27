@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FuncionariosService } from '../../../core/services/funcionarios';
+import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
 
 @Component({

@@ -8,7 +8,7 @@ import {
   FormArray,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FuncionariosService } from '../../../core/services/funcionarios';
+import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeRequestDTO } from '../../../core/types/FuncionarioRequest';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
 import { Sexo } from '../../../core/enum/Sexo.enum';

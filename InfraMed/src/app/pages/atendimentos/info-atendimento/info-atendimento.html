@@ -1,1 +1,74 @@
-<p>info-atendimento works!</p>
+<div class="container">
+  <h2>Informações do Atendimento</h2>
+
+  <div *ngIf="loading" class="alert alert-info">Carregando...</div>
+
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+  <div *ngIf="atendimento" class="card">
+    <div class="card-header">
+      <h4>Atendimento do(a) {{atendimento.nomePaciente}}</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Dados do(a) Paciente</h5>
+          <p><strong>Nome:</strong> {{atendimento.nomePaciente}}</p>
+          <p><strong>Status:</strong> {{atendimento.statusPaciente}}</p>
+          <p><strong>Acompanhante:</strong> {{atendimento.acompanhante || 'N/A'}}</p>
+          <p><strong>Condições Pré-existentes:</strong> {{atendimento.condicoesPreexistentes || 'N/A'}}</p>
+          <p><strong>Data de Entrada:</strong> {{atendimento.dataEntrada | date:'medium'}}</p>
+          <p *ngIf="atendimento.dataSaida"><strong>Data de Saída:</strong> {{atendimento.dataSaida | date:'medium'}}</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Dados Médicos</h5>
+          <p><strong>Médico Responsável:</strong> {{atendimento.nomeMedicoResponsavel || 'N/A'}}</p>
+          <p *ngIf="atendimento.nomeMedicoComplicacao"><strong>Médico de Complicação:</strong>
+            {{atendimento.nomeMedicoComplicacao}}</p>
+          <p><strong>Diagnóstico:</strong> {{atendimento.diagnostico || 'N/A'}}</p>
+          <p *ngIf="atendimento.diagnosticoComplicacao"><strong>Diagnóstico de Complicação:</strong>
+            {{atendimento.diagnosticoComplicacao}}</p>
+          <p><strong>Tratamento:</strong> {{atendimento.tratamento || 'N/A'}}</p>
+          <p *ngIf="atendimento.tratamentoComplicacao"><strong>Tratamento de Complicação:</strong>
+            {{atendimento.tratamentoComplicacao}}</p>
+          <p><strong>Status de Monitoramento:</strong> {{atendimento.statusMonitoramento}}</p>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <h5>Observações</h5>
+          <p>{{atendimento.observacoes || 'N/A'}}</p>
+        </div>
+      </div>
+
+      <div class="row mt-4" *ngIf="atendimento.leituras && atendimento.leituras.length > 0">
+        <div class="col-md-12">
+          <h5>Leituras do Sensor</h5>
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Tipo de Dado</th>
+                <th>Valor</th>
+                <th>Data/Hora</th>
+                <th>Condição de Saúde</th>
+                <th>Gravidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leitura of atendimento.leituras">
+                <td>{{leitura.tipoDado}}</td>
+                <td>{{leitura.valor}} {{leitura.unidadeMedida}}</td>
+                <td>{{leitura.dataHora | date:'short'}}</td>
+                <td>{{leitura.condicaoSaude || 'N/A'}}</td>
+                <td>{{leitura.gravidade || 'N/A'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-secondary" (click)="voltar()">Voltar</button>
+    </div>
+  </div>

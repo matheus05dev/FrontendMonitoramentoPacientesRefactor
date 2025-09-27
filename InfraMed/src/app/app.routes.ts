@@ -12,6 +12,10 @@ import { ListarQuartos } from './pages/quartos/listar-quartos/listar-quartos';
 import { CriarQuartos } from './pages/quartos/criar-quartos/criar-quartos';
 import { EditarQuartos } from './pages/quartos/editar-quartos/editar-quartos';
 import { InfoQuarto } from './pages/quartos/info-quarto/info-quarto';
+import { ListarAtendimentos } from './pages/atendimentos/listar-atendimentos/listar-atendimentos';
+import { CriarAtendimentos } from './pages/atendimentos/criar-atendimentos/criar-atendimentos';
+import { EditarAtendimentos } from './pages/atendimentos/editar-atendimentos/editar-atendimentos';
+import { InfoAtendimento } from './pages/atendimentos/info-atendimento/info-atendimento';
 
 export const routes: Routes = [
   {
@@ -65,5 +69,21 @@ export const routes: Routes = [
   {
     path: 'quartos/info/:id',
     component: InfoQuarto,
+  },
+  {
+    path: 'atendimentos',
+    component: ListarAtendimentos,
+  },
+  {
+    path: 'atendimentos/criar',
+    component: CriarAtendimentos,
+  },
+  {
+    path: 'atendimentos/editar/:id',
+    component: EditarAtendimentos,
+  },
+  {
+    path: 'atendimentos/info/:id',
+    component: InfoAtendimento,
   },
 ];

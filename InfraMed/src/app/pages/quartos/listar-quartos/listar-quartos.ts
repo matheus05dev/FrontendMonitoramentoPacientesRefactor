@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { QuartosService } from '../../../core/services/quartos';
+import { QuartosService } from '../../../core/services/quartos.service';
 import { QuartoResponse } from '../../../core/types/QuartoResponse';
 
 @Component({
