@@ -14,6 +14,7 @@ export interface AtendimentoResponse {
   condicoesPreexistentes?: string;
   diagnostico?: Diagnostico;
   tratamento?: string;
+  numeroQuarto?: number;
   dataEntrada?: string;
   dataSaida?: string;
   observacoes?: string;

@@ -15,6 +15,7 @@
         <th>Status Paciente</th>
         <th>Data de Entrada</th>
         <th>Data de Saida</th>
+        <th>Numero do Quarto</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@
         <td>{{atendimento.statusPaciente}}</td>
         <td>{{atendimento.dataEntrada | date:'short'}}</td>
         <td>{{atendimento.dataSaida | date:'short'}}</td>
+        <td>{{atendimento.numeroQuarto}}
         <td>
           <button class="btn btn-info btn-sm me-1" (click)="navegarParaInfo(atendimento.id!)">Ver</button>
           <button class="btn btn-warning btn-sm me-1" (click)="navegarParaEditar(atendimento.id!)">Editar</button>
