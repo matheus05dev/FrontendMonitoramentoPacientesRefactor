@@ -47,11 +47,11 @@ export class ListarFuncionarios implements OnInit {
   }
 
   viewFuncionario(id: number): void {
-    this.router.navigate(['/funcionarios/info', id]);
+    this.router.navigate(['app/funcionarios/info', id]);
   }
 
   editFuncionario(id: number): void {
-    this.router.navigate(['/funcionarios/editar', id]);
+    this.router.navigate(['app/funcionarios/editar', id]);
   }
 
   deleteFuncionario(id: number): void {
@@ -64,6 +64,6 @@ export class ListarFuncionarios implements OnInit {
   }
 
   createFuncionario(): void {
-    this.router.navigate(['/funcionarios/criar']);
+    this.router.navigate(['/app/funcionarios/criar']);
   }
 }

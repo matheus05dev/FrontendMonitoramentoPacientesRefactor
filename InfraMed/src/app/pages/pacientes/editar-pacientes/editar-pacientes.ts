@@ -134,13 +134,13 @@ export class EditarPacientes implements OnInit {
         })),
       };
       this.pacientesService.atualizar(this.id, paciente).subscribe({
-        next: () => this.router.navigate(['/pacientes']),
+        next: () => this.router.navigate(['app/pacientes']),
         error: (err) => console.error('Erro ao atualizar paciente:', err),
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/pacientes']);
+    this.router.navigate(['app/pacientes']);
   }
 }

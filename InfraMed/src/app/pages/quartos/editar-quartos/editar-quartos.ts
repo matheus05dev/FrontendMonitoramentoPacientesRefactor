@@ -64,13 +64,13 @@ export class EditarQuartos implements OnInit {
     if (this.form.valid) {
       const request: QuartoRequest = this.form.value;
       this.quartosService.atualizar(this.id, request).subscribe({
-        next: () => this.router.navigate(['/quartos']),
+        next: () => this.router.navigate(['app/quartos']),
         error: (err) => console.error('Erro ao atualizar quarto:', err),
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/quartos']);
+    this.router.navigate(['app/quartos']);
   }
 }

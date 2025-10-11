@@ -147,7 +147,7 @@ export class EditarAtendimentos implements OnInit {
           next: () => {
             this.loading = false;
             alert('Atendimento atualizado com sucesso!');
-            this.router.navigate(['/atendimentos']);
+            this.router.navigate(['app/atendimentos']);
           },
           error: (err) => {
             this.loading = false;
@@ -161,6 +161,6 @@ export class EditarAtendimentos implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['/atendimentos']);
+    this.router.navigate(['app/atendimentos']);
   }
 }

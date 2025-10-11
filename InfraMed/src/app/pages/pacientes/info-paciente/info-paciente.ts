@@ -33,16 +33,16 @@ export class InfoPaciente implements OnInit {
       },
       error: (err) => {
         console.error('Erro ao carregar paciente:', err);
-        this.router.navigate(['/pacientes']);
+        this.router.navigate(['app/pacientes']);
       },
     });
   }
 
   edit(): void {
-    this.router.navigate(['/pacientes/editar', this.id]);
+    this.router.navigate(['app/pacientes/editar', this.id]);
   }
 
   back(): void {
-    this.router.navigate(['/pacientes']);
+    this.router.navigate(['app/pacientes']);
   }
 }

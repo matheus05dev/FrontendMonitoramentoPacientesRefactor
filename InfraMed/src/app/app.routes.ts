@@ -1,5 +1,8 @@
+import { Login } from './pages/login/login';
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
+import { authGuard } from './core/guard/auth.guard-guard';
+import { ToolbarSidenav } from './layout/toolbar-sidenav/toolbar-sidenav';
 import { ListarFuncionarios } from './pages/funcionarios/listar-funcionarios/listar-funcionarios';
 import { CriarFuncionarios } from './pages/funcionarios/criar-funcionarios/criar-funcionarios';
 import { EditarFuncionarios } from './pages/funcionarios/editar-funcionarios/editar-funcionarios';
@@ -20,70 +23,79 @@ import { InfoAtendimento } from './pages/atendimentos/info-atendimento/info-aten
 export const routes: Routes = [
   {
     path: '',
-    component: Home,
+    component: Login,
   },
   {
-    path: 'funcionarios',
-    component: ListarFuncionarios,
-  },
-  {
-    path: 'funcionarios/criar',
-    component: CriarFuncionarios,
-  },
-  {
-    path: 'funcionarios/editar/:id',
-    component: EditarFuncionarios,
-  },
-  {
-    path: 'funcionarios/info/:id',
-    component: InfoFuncionarios,
-  },
-  {
-    path: 'pacientes',
-    component: ListarPacientes,
-  },
-  {
-    path: 'pacientes/criar',
-    component: CriarPacientes,
-  },
-  {
-    path: 'pacientes/editar/:id',
-    component: EditarPacientes,
-  },
-  {
-    path: 'pacientes/info/:id',
-    component: InfoPaciente,
-  },
-  {
-    path: 'quartos',
-    component: ListarQuartos,
-  },
-  {
-    path: 'quartos/criar',
-    component: CriarQuartos,
-  },
-  {
-    path: 'quartos/editar/:id',
-    component: EditarQuartos,
-  },
-  {
-    path: 'quartos/info/:id',
-    component: InfoQuarto,
-  },
-  {
-    path: 'atendimentos',
-    component: ListarAtendimentos,
-  },
-  {
-    path: 'atendimentos/criar',
-    component: CriarAtendimentos,
-  },
-  {
-    path: 'atendimentos/editar/:id',
-    component: EditarAtendimentos,
-  },
-  {
-    path: 'atendimentos/info/:id',
-    component: InfoAtendimento,
+    path: 'app',
+    component: ToolbarSidenav,
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: Home },
+      {
+        path: 'funcionarios',
+        component: ListarFuncionarios,
+      },
+      {
+        path: 'funcionarios/criar',
+        component: CriarFuncionarios,
+      },
+      {
+        path: 'funcionarios/editar/:id',
+        component: EditarFuncionarios,
+      },
+      {
+        path: 'funcionarios/info/:id',
+        component: InfoFuncionarios,
+      },
+      {
+        path: 'pacientes',
+        component: ListarPacientes,
+      },
+      {
+        path: 'pacientes/criar',
+        component: CriarPacientes,
+      },
+      {
+        path: 'pacientes/editar/:id',
+        component: EditarPacientes,
+      },
+      {
+        path: 'pacientes/info/:id',
+        component: InfoPaciente,
+      },
+      {
+        path: 'quartos',
+        component: ListarQuartos,
+      },
+      {
+        path: 'quartos/criar',
+        component: CriarQuartos,
+      },
+      {
+        path: 'quartos/editar/:id',
+        component: EditarQuartos,
+      },
+      {
+        path: 'quartos/info/:id',
+        component: InfoQuarto,
+      },
+      {
+        path: 'atendimentos',
+        component: ListarAtendimentos,
+      },
+      {
+        path: 'atendimentos/criar',
+        component: CriarAtendimentos,
+      },
+      {
+        path: 'atendimentos/editar/:id',
+        component: EditarAtendimentos,
+      },
+      {
+        path: 'atendimentos/info/:id',
+        component: InfoAtendimento,
+      },
+    ],
   },
 ];

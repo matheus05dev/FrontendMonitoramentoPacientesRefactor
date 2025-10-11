@@ -35,11 +35,11 @@ export class ListarQuartos implements OnInit {
   }
 
   viewQuarto(id: number): void {
-    this.router.navigate(['/quartos/info', id]);
+    this.router.navigate(['app/quartos/info', id]);
   }
 
   editQuarto(id: number): void {
-    this.router.navigate(['/quartos/editar', id]);
+    this.router.navigate(['app/quartos/editar', id]);
   }
 
   deleteQuarto(id: number): void {
@@ -56,6 +56,6 @@ export class ListarQuartos implements OnInit {
   }
 
   createQuarto(): void {
-    this.router.navigate(['/quartos/criar']);
+    this.router.navigate(['app/quartos/criar']);
   }
 }

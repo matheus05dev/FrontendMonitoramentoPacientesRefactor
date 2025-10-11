@@ -40,15 +40,15 @@ export class ListarAtendimentos implements OnInit {
   }
 
   navegarParaCriar(): void {
-    this.router.navigate(['/atendimentos/criar']);
+    this.router.navigate(['app/atendimentos/criar']);
   }
 
   navegarParaInfo(id: number): void {
-    this.router.navigate(['/atendimentos/info', id]);
+    this.router.navigate(['app/atendimentos/info', id]);
   }
 
   navegarParaEditar(id: number): void {
-    this.router.navigate(['/atendimentos/editar', id]);
+    this.router.navigate(['app/atendimentos/editar', id]);
   }
 
   deletarAtendimento(id: number): void {

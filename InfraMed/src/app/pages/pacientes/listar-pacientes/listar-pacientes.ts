@@ -58,11 +58,11 @@ export class ListarPacientes implements OnInit {
   }
 
   viewPaciente(id: number): void {
-    this.router.navigate(['/pacientes/info', id]);
+    this.router.navigate(['app/pacientes/info', id]);
   }
 
   editPaciente(id: number): void {
-    this.router.navigate(['/pacientes/editar', id]);
+    this.router.navigate(['app/pacientes/editar', id]);
   }
 
   deletePaciente(id: number): void {
@@ -79,6 +79,6 @@ export class ListarPacientes implements OnInit {
   }
 
   createPaciente(): void {
-    this.router.navigate(['/pacientes/criar']);
+    this.router.navigate(['app/pacientes/criar']);
   }
 }

@@ -43,7 +43,7 @@ export class InfoQuarto implements OnInit {
       },
       error: (err) => {
         console.error('Erro ao carregar quarto:', err);
-        this.router.navigate(['/quartos']);
+        this.router.navigate(['app/quartos']);
       },
     });
   }
@@ -110,10 +110,10 @@ export class InfoQuarto implements OnInit {
   }
 
   edit(): void {
-    this.router.navigate(['/quartos/editar', this.id]);
+    this.router.navigate(['app/quartos/editar', this.id]);
   }
 
   back(): void {
-    this.router.navigate(['/quartos']);
+    this.router.navigate(['app/quartos']);
   }
 }

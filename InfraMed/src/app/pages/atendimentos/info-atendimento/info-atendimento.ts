@@ -47,6 +47,6 @@ export class InfoAtendimento implements OnInit {
   }
 
   voltar(): void {
-    this.router.navigate(['/atendimentos']);
+    this.router.navigate(['app/atendimentos']);
   }
 }

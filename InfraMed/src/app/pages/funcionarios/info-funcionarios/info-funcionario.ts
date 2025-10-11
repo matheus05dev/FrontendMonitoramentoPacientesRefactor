@@ -34,10 +34,10 @@ export class InfoFuncionarios implements OnInit {
   }
 
   edit(): void {
-    this.router.navigate(['/funcionarios/editar', this.id]);
+    this.router.navigate(['app/funcionarios/editar', this.id]);
   }
 
   back(): void {
-    this.router.navigate(['/funcionarios']);
+    this.router.navigate(['app/funcionarios']);
   }
 }

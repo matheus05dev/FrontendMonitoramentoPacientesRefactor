@@ -82,13 +82,13 @@ export class CriarFuncionarios {
         })),
       };
       this.funcionariosService.criar(funcionario).subscribe({
-        next: () => this.router.navigate(['/funcionarios']),
+        next: () => this.router.navigate(['app/funcionarios']),
         error: (err) => console.error('Erro ao criar funcionário:', err),
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/funcionarios']);
+    this.router.navigate(['app/funcionarios']);
   }
 }

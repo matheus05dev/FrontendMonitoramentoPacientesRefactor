@@ -129,13 +129,13 @@ export class EditarFuncionarios implements OnInit {
         })),
       };
       this.funcionariosService.atualizar(this.id, funcionario).subscribe({
-        next: () => this.router.navigate(['/funcionarios']),
+        next: () => this.router.navigate(['app/funcionarios']),
         error: (err) => console.error('Erro ao atualizar funcionário:', err),
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/funcionarios']);
+    this.router.navigate(['app/funcionarios']);
   }
 }

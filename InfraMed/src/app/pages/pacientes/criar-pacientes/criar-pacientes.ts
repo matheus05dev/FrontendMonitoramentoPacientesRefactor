@@ -82,13 +82,13 @@ export class CriarPacientes {
         })),
       };
       this.pacientesService.criar(paciente).subscribe({
-        next: () => this.router.navigate(['/pacientes']),
+        next: () => this.router.navigate(['app/pacientes']),
         error: (err) => console.error('Erro ao criar paciente:', err),
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/pacientes']);
+    this.router.navigate(['app/pacientes']);
   }
 }

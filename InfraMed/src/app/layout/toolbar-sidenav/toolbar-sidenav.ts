@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar-sidenav',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './toolbar-sidenav.html',
-  styleUrl: './toolbar-sidenav.css'
+  styleUrl: './toolbar-sidenav.css',
 })
-export class ToolbarSidenav {
-
-}
+export class ToolbarSidenav {}

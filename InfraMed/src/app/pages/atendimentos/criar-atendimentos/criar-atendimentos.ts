@@ -98,7 +98,7 @@ export class CriarAtendimentos implements OnInit {
         next: () => {
           this.loading = false;
           alert('Atendimento criado com sucesso!');
-          this.router.navigate(['/atendimentos']);
+          this.router.navigate(['app/atendimentos']);
         },
         error: (err) => {
           this.loading = false;
@@ -112,6 +112,6 @@ export class CriarAtendimentos implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['/atendimentos']);
+    this.router.navigate(['app/atendimentos']);
   }
 }
