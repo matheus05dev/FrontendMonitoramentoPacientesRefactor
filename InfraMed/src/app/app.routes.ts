@@ -1,7 +1,7 @@
 import { Login } from './pages/login/login';
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { authGuard } from './core/guard/auth.guard-guard';
+import { authGuard } from './core/guard/auth.guard';
 import { ToolbarSidenav } from './layout/toolbar-sidenav/toolbar-sidenav';
 import { ListarFuncionarios } from './pages/funcionarios/listar-funcionarios/listar-funcionarios';
 import { CriarFuncionarios } from './pages/funcionarios/criar-funcionarios/criar-funcionarios';
