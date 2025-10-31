@@ -1,2 +1,13 @@
-<p>toolbar-sidenav works!</p>
-<router-outlet></router-outlet>
+<router-outlet>
+    <button class="menu-toggle" (click)="toggle()" aria-label="Abrir menu">☰</button>
+
+    <div class="overlay" [class.show]="isOpen" (click)="close()"></div>
+
+    <nav class="botoes-sidenav" [class.open]="isOpen" (click)="$event.stopPropagation()">
+        <button class="botao-F" routerLink="/app/funcionarios">funcionarios</button>
+        <button class="botao-P" routerLink="/app/pacientes">pacientes</button>
+        <button class="botao-H" routerLink="home">home</button>
+        <button class="botao-D" routerLink="">deslogar</button>
+    </nav>
+
+    <router-outlet></router-outlet>
