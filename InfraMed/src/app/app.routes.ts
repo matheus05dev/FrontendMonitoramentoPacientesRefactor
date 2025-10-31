@@ -26,11 +26,11 @@ export const routes: Routes = [
     component: Login,
   },
   {
-    path: 'app',
+    path: 'app',  
     component: ToolbarSidenav,
     canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+     // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: Home },
       {
         path: 'funcionarios',

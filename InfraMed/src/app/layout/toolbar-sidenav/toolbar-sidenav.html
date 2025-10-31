@@ -1,4 +1,3 @@
-<router-outlet>
     <button class="menu-toggle" (click)="toggle()" aria-label="Abrir menu">☰</button>
 
     <div class="overlay" [class.show]="isOpen" (click)="close()"></div>
@@ -10,4 +9,6 @@
         <button class="botao-D" routerLink="">deslogar</button>
     </nav>
 
-    <router-outlet></router-outlet>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>asacascasc
