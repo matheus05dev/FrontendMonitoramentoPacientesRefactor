@@ -1,0 +1,134 @@
+
+.header-hero-section {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+}
+
+.header-hero-slideshow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-hero-slideshow img {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: headerFadeHero 25s infinite;
+  position: absolute;
+  object-fit: cover;
+}
+
+.header-hero-slideshow img:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.header-hero-slideshow img:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.header-hero-slideshow img:nth-child(3) {
+  animation-delay: 10s;
+}
+
+.header-hero-slideshow img:nth-child(4) {
+  animation-delay: 15s;
+}
+
+.header-hero-slideshow img:nth-child(5) {
+  animation-delay: 20s;
+}
+
+@keyframes headerFadeHero {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.header-hero-text {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  caret-color: transparent;
+}
+
+.header-hero-title {
+  font-size: 7.5rem;
+  color: var(--cor-texto-principal);
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin-top: -4rem;
+  padding: 3rem;
+  caret-color: transparent;
+}
+
+.header-hero-subtitle {
+  color: var(--cor-texto-principal);
+  font-size: 1.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  caret-color: transparent;
+}
+
+.header-hero-cta {
+  color: var(--cor-texto-principal);
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.header-hero-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-primaria);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.header-hero-btn:hover {
+  background-color: var(--cor-primaria);
+  opacity: 1;
+  transform: scale(105%);
+}
