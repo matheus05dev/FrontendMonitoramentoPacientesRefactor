@@ -2,14 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { PacientesService } from '../../../core/services/pacientes.service';
 import { PacienteResponse } from '../../../core/types/PacienteResponse';
 
 @Component({
   selector: 'app-listar-pacientes',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
+  ],
   templateUrl: './listar-pacientes.html',
-  styleUrl: './listar-pacientes.css',
+  styleUrls: ['./listar-pacientes.css'],
 })
 export class ListarPacientes implements OnInit {
   pacientes: PacienteResponse[] = [];

@@ -17,7 +17,7 @@ import { Sexo } from '../../../core/enum/Sexo.enum';
   selector: 'app-editar-pacientes',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './editar-pacientes.html',
-  styleUrl: './editar-pacientes.css',
+  styleUrls: ['./editar-pacientes.css'],
 })
 export class EditarPacientes implements OnInit {
   form: FormGroup;

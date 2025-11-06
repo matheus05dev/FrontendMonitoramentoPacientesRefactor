@@ -1,14 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { QuartosService } from '../../../core/services/quartos.service';
 import { QuartoResponse } from '../../../core/types/QuartoResponse';
 
 @Component({
   selector: 'app-listar-quartos',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
+  ],
   templateUrl: './listar-quartos.html',
-  styleUrl: './listar-quartos.css',
+  styleUrls: ['./listar-quartos.css'],
 })
 export class ListarQuartos implements OnInit {
   quartos: QuartoResponse[] = [];

@@ -17,7 +17,7 @@ import { TipoQuarto } from '../../../core/enum/TipoQuarto.enum';
   selector: 'app-editar-quartos',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './editar-quartos.html',
-  styleUrl: './editar-quartos.css',
+  styleUrls: ['./editar-quartos.css'],
 })
 export class EditarQuartos implements OnInit {
   form: FormGroup;

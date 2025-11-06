@@ -16,7 +16,7 @@ import { TipoQuarto } from '../../../core/enum/TipoQuarto.enum';
   selector: 'app-criar-quartos',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './criar-quartos.html',
-  styleUrl: './criar-quartos.css',
+  styleUrls: ['./criar-quartos.css'],
 })
 export class CriarQuartos {
   form: FormGroup;

@@ -2,14 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
 
 @Component({
   selector: 'app-listar-funcionarios',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatDialogModule
+  ],
   templateUrl: './listar-funcionarios.html',
-  styleUrl: './listar-funcionarios.css',
+  styleUrls: ['./listar-funcionarios.css'],
 })
 export class ListarFuncionarios implements OnInit {
   funcionarios: FuncionarioSaudeResponseDTO[] = [];

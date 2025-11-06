@@ -11,7 +11,7 @@ import { PacienteResponse } from '../../../core/types/PacienteResponse';
   selector: 'app-info-quarto',
   imports: [CommonModule, FormsModule],
   templateUrl: './info-quarto.html',
-  styleUrl: './info-quarto.css',
+  styleUrls: ['./info-quarto.css'],
 })
 export class InfoQuarto implements OnInit {
   quarto: QuartoResponse | null = null;

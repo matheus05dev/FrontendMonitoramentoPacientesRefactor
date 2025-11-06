@@ -23,12 +23,12 @@ import { InfoAtendimento } from './pages/atendimentos/info-atendimento/info-aten
 export const routes: Routes = [
   {
     path: '',
-    component: Login,
+    redirectTo: 'app',
+    pathMatch: 'full'
   },
   {
     path: 'app',  
     component: ToolbarSidenav,
-    canActivate: [authGuard],
     children: [
      // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: Home },

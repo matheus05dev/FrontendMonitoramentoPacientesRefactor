@@ -1,13 +1,15 @@
-<div class="main-container">
-    <!-- <router-outlet></router-outlet>   -->
-
+<div class="main-container" [class.dark-theme]="isDarkMode">
+    <button mat-icon-button class="theme-toggle" (click)="toggleTheme()" [matTooltip]="isDarkMode ? 'Modo claro' : 'Modo escuro'">
+        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
     <div class="header-hero-section">
         <div class="header-hero-text">
             <h1 class="header-hero-title">INFRAMED</h1>
-            <h2 class="header-hero-subtitle">Seu gerenciamento de pacientes preferido:]</h2>
-            <button mat-raised-button class="header-hero-btn" routerLink="/app/funcionarios">Funcionarios</button>
-            <button mat-raised-button class="header-hero-btn" routerLink="/app/pacientes">Pacientes</button>
-
+            <h2 class="header-hero-subtitle">Sistema Inteligente de Gestão Hospitalar</h2>
+            <div class="header-hero-buttons">
+                <button mat-raised-button class="header-hero-btn" routerLink="/app/funcionarios">Funcionários</button>
+                <button mat-raised-button class="header-hero-btn" routerLink="/app/pacientes">Pacientes</button>
+            </div>
         </div>
         <div class="header-hero-slideshow">
             <img src="header-hero1.jpg" alt="Hero Banner 1">
@@ -18,7 +20,84 @@
         </div>
     </div>
 
-    <div class="container">
-        <button>sla</button>
+    <div class="content-container">
+        <mat-tab-group mat-align-tabs="center" animationDuration="500ms">
+            <!-- About Tab -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">info</mat-icon>
+                    Sobre o InfraMed
+                </ng-template>
+                <div class="tab-content about-section">
+                    <h2>Bem-vindo ao InfraMed</h2>
+                    <div class="about-grid">
+                        <div class="about-card">
+                            <mat-icon>local_hospital</mat-icon>
+                            <h3>Gestão Hospitalar Integrada</h3>
+                            <p>Sistema completo para gerenciamento de pacientes, médicos, enfermeiros e demais profissionais da saúde.</p>
+                        </div>
+                        <div class="about-card">
+                            <mat-icon>meeting_room</mat-icon>
+                            <h3>Controle de Quartos</h3>
+                            <p>Monitoramento em tempo real da ocupação e disponibilidade de quartos e leitos hospitalares.</p>
+                        </div>
+                        <div class="about-card">
+                            <mat-icon>event_available</mat-icon>
+                            <h3>Agendamentos</h3>
+                            <p>Organize consultas, exames e procedimentos de forma eficiente e integrada.</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Rooms Tab -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">door_front</mat-icon>
+                    Quartos
+                </ng-template>
+                <div class="tab-content rooms-section">
+                    <div class="rooms-grid">
+                        <div class="room-card" *ngFor="let room of mockRooms">
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title>Quarto Placeholder</mat-card-title>
+                                    <mat-card-subtitle>Status: Placeholder</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p>Informações do quarto serão exibidas aqui</p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Activity Tab -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">history</mat-icon>
+                    Atividades
+                </ng-template>
+                <div class="tab-content activity-section">
+                    <div class="activity-list">
+                        <mat-card class="activity-card" *ngFor="let activity of mockActivities">
+                            <div class="activity-content">
+                                <mat-icon [ngClass]="activity.type">
+                                    {{activity.type === 'patient' ? 'person' : 
+                                       activity.type === 'doctor' ? 'medical_services' : 
+                                       'event'}}
+                                </mat-icon>
+                                <div class="activity-details">
+                                    <h3>{{activity.name}}</h3>
+                                    <p>{{activity.action}}</p>
+                                    <span class="activity-time">{{activity.time}}</span>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>

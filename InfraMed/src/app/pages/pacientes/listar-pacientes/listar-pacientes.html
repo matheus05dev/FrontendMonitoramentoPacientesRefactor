@@ -1,41 +1,92 @@
-<h1>Lista de Pacientes</h1>
+<div class="container">
+  <div class="header-actions">
+    <h1>Lista de Pacientes</h1>
+    <button class="primary" (click)="createPaciente()">
+      <mat-icon>person_add</mat-icon>
+      Novo Paciente
+    </button>
+  </div>
 
-<button (click)="createPaciente()" class="btn btn-primary">Criar Novo Paciente</button>
+  <div class="search-section">
+    <mat-form-field appearance="outline" class="search-input">
+      <mat-label>Buscar por nome</mat-label>
+      <input matInput [(ngModel)]="searchNome" placeholder="Digite o nome do paciente..." 
+             (keyup.enter)="searchByNome()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button class="secondary" (click)="searchByNome()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+    <button class="outline" (click)="loadPacientes()">
+      <mat-icon>refresh</mat-icon>
+      Limpar
+    </button>
+  </div>
 
-<div class="search-section">
-  <input type="text" [(ngModel)]="searchNome" placeholder="Buscar por nome..." (keyup.enter)="searchByNome()"
-    class="search-input">
-  <button (click)="searchByNome()" class="btn btn-secondary">Buscar</button>
-  <button (click)="loadPacientes()" class="btn btn-outline">Limpar</button>
-</div>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Carregando pacientes...</p>
+  </div>
 
-<div *ngIf="loading" class="loading">Carregando...</div>
+  <table *ngIf="!loading && pacientes.length > 0" class="table">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Contato</th>
+        <th>CPF</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>
+          <div class="patient-info">
+            <div class="patient-avatar">
+              {{ paciente.nome.charAt(0) }}
+            </div>
+            <div>
+              <div style="font-weight: 500;">{{ paciente.nome }}</div>
+              <small style="color: var(--text-secondary);">{{ paciente.sexo }}</small>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: column;">
+            <span>{{ paciente.email }}</span>
+            <small style="color: var(--text-secondary);" *ngIf="paciente.telefones && paciente.telefones.length > 0">
+              {{ paciente.telefones[0].numero }}
+            </small>
+          </div>
+        </td>
+        <td>{{ paciente.cpf }}</td>
+        <td>
+          <span class="status-badge" [class.status-active]="true">
+            Ativo
+          </span>
+        </td>
+        <td class="actions">
+          <button class="info" (click)="viewPaciente(paciente.id)" matTooltip="Ver detalhes">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button class="warning" (click)="editPaciente(paciente.id)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="danger" (click)="deletePaciente(paciente.id)" matTooltip="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<table *ngIf="!loading && pacientes.length > 0" class="table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>CPF</th>
-      <th>Sexo</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let paciente of pacientes">
-      <td>{{ paciente.nome }}</td>
-      <td>{{ paciente.email }}</td>
-      <td>{{ paciente.cpf }}</td>
-      <td>{{ paciente.sexo }}</td>
-      <td>
-        <button (click)="viewPaciente(paciente.id)" class="btn btn-info">Ver</button>
-        <button (click)="editPaciente(paciente.id)" class="btn btn-warning">Editar</button>
-        <button (click)="deletePaciente(paciente.id)" class="btn btn-danger">Deletar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="!loading && pacientes.length === 0" class="no-data">
-  <p>Nenhum paciente encontrado.</p>
+  <div *ngIf="!loading && pacientes.length === 0" class="no-data">
+    <mat-icon>people_outline</mat-icon>
+    <p>Nenhum paciente encontrado.</p>
+    <button class="primary" (click)="createPaciente()">
+      <mat-icon>person_add</mat-icon>
+      Cadastrar Primeiro Paciente
+    </button>
+  </div>
 </div>

@@ -8,7 +8,7 @@ import { PacienteResponse } from '../../../core/types/PacienteResponse';
   selector: 'app-info-paciente',
   imports: [CommonModule],
   templateUrl: './info-paciente.html',
-  styleUrl: './info-paciente.css',
+  styleUrls: ['./info-paciente.css'],
 })
 export class InfoPaciente implements OnInit {
   paciente: PacienteResponse | null = null;

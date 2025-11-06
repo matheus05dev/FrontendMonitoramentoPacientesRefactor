@@ -1,14 +1,64 @@
-    <button class="menu-toggle" (click)="toggle()" aria-label="Abrir menu">☰</button>
+<mat-drawer-container class="sidenav-container">
+    <mat-drawer #drawer class="sidenav" mode="over">
+        <div class="sidenav-header">
+            <img src="assets/logo.png" alt="InfraMed Logo" class="logo">
+            <h2>InfraMed</h2>
+        </div>
 
-    <div class="overlay" [class.show]="isOpen" (click)="close()"></div>
+        <mat-nav-list>
+            <a mat-list-item routerLink="home" routerLinkActive="active">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </a>
+            <a mat-list-item routerLink="/app/pacientes" routerLinkActive="active">
+                <mat-icon>people</mat-icon>
+                <span>Pacientes</span>
+            </a>
+            <a mat-list-item routerLink="/app/funcionarios" routerLinkActive="active">
+                <mat-icon>badge</mat-icon>
+                <span>Funcionários</span>
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Sair</span>
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
 
-    <nav class="botoes-sidenav" [class.open]="isOpen" (click)="$event.stopPropagation()">
-        <button class="botao-F" routerLink="/app/funcionarios">funcionarios</button>
-        <button class="botao-P" routerLink="/app/pacientes">pacientes</button>
-        <button class="botao-H" routerLink="home">home</button>
-        <button class="botao-D" routerLink="">deslogar</button>
-    </nav>
+    <mat-drawer-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>InfraMed</span>
+            <span class="toolbar-spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleTheme()">
+                <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+            </button>
+        </mat-toolbar>
 
-    <div class="content">
-        <router-outlet></router-outlet>
-    </div>asacascasc
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Configurações</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+    </button>
+</mat-menu>
