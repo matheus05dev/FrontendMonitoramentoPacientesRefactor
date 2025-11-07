@@ -2,7 +2,7 @@
 :root {
   /* Light theme variables */
   --background-primary: #ffffff;
-  --background-secondary: #f8fafc;
+  --background-secondary: #375d83;
   --text-primary: #1e293b;
   --text-secondary: #475569;
   --accent-color: #0ea5e9;
@@ -39,7 +39,7 @@
   --text-secondary: #cbd5e1;
   --accent-color: #0ea5e9;
   --accent-light: #38bdf8;
-  --header-bg: linear-gradient(135deg, #0369a1 0%, #1e40af 100%);
+  --header-bg: linear-gradient(135deg, #0369a1 0%, #ebeef7 100%);
   --header-text: #ffffff;
   --card-bg: #1e293b;
   --card-shadow: rgba(0, 0, 0, 0.4);
@@ -88,13 +88,13 @@
 }
 
 .mat-tab-label {
-  color: var(--text-secondary) !important;
+  color: #ffffff !important;
   opacity: 0.7;
   transition: all var(--transition-fast);
 }
 
 .mat-tab-label-active {
-  color: var(--accent-color) !important;
+  color: #ffffff !important;
   opacity: 1;
 }
 

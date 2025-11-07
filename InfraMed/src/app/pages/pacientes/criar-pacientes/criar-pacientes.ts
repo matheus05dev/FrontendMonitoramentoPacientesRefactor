@@ -8,19 +8,21 @@ import {
   FormArray,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { PacientesService } from '../../../core/services/pacientes.service';
 import { PacienteRequest } from '../../../core/types/PacienteRequest';
 import { Sexo } from '../../../core/enum/Sexo.enum';
 
 @Component({
   selector: 'app-criar-pacientes',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './criar-pacientes.html',
   styleUrl: './criar-pacientes.css',
 })
 export class CriarPacientes {
   form: FormGroup;
   sexos = Object.values(Sexo);
+  isDarkMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +40,9 @@ export class CriarPacientes {
     });
     // Add initial telefone
     this.addTelefone();
+    
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   get telefones(): FormArray {
@@ -75,7 +80,6 @@ export class CriarPacientes {
       const paciente: PacienteRequest = {
         ...formValue,
         dataNascimento: formValue.dataNascimento,
-        quartoId: parseInt(formValue.quartoId, 10),
         telefones: formValue.telefones.map((tel: any) => ({
           ddd: parseInt(tel.ddd, 10),
           numero: tel.numero,
