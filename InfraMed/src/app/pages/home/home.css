@@ -47,6 +47,11 @@
   --border-color: #334155;
 }
 
+.dark-theme .theme-toggle {
+  background-color: var(--background-secondary);
+  color: var(--text-primary); /* Garante que o ícone seja branco no tema escuro */
+}
+
 .theme-toggle {
   position: fixed;
   top: var(--spacing-lg);
@@ -87,13 +92,13 @@
   box-shadow: 0 4px 6px -1px var(--card-shadow);
 }
 
-.mat-tab-label {
+.mat-tab-group .mat-tab-label {
   color: #ffffff !important;
   opacity: 0.7;
   transition: all var(--transition-fast);
 }
 
-.mat-tab-label-active {
+.mat-tab-group .mat-tab-label-active {
   color: #ffffff !important;
   opacity: 1;
 }
@@ -251,30 +256,50 @@
 
 .header-hero-buttons {
   display: flex;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+  gap: var(--spacing-xl); /* Aumenta o espaço entre os botões */
+  margin-top: var(--spacing-xl);
+  justify-content: center;
 }
 
 .header-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-xl);
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  color: var(--header-text);
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   backdrop-filter: blur(10px);
+  border: 2px solid transparent;
 }
 
-.header-hero-btn:hover {
-  background: var(--header-text);
+.header-hero-btn.primary {
+  background-color: var(--header-text);
   color: var(--accent-color);
   border-color: var(--header-text);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-hero-btn.secondary {
+  color: var(--header-text);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-hero-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.header-hero-btn.primary:hover {
+  background-color: #f0f9ff; /* Um branco levemente azulado */
+}
+
+.header-hero-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--accent-color);
 }

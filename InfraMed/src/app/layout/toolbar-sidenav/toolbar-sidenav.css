@@ -7,6 +7,7 @@
   width: var(--sidenav-width);
   background-color: var(--cinza-800);
   border-right: 1px solid var(--cinza-700);
+  
 }
 
 .sidenav-header {
@@ -17,6 +18,10 @@
   gap: var(--spacing-unit);
 }
 
+.list-nav{
+  color:  white;
+}
+
 .sidenav-header .logo {
   width: 40px;
   height: 40px;
@@ -24,11 +29,12 @@
 }
 
 .sidenav-header h2 {
-  color: var(--cor-texto-principal);
+  color: white;
   font-size: var(--font-size-large);
   font-weight: var(--font-weight-medium);
   margin: 0;
 }
+
 
 mat-toolbar {
   position: sticky;
@@ -48,16 +54,6 @@ mat-toolbar {
 
 mat-nav-list {
   padding: var(--spacing-unit);
-}
-
-mat-nav-list a {
-  margin-bottom: var(--spacing-unit);
-  border-radius: var(--border-radius);
-  color: var(--cor-texto-principal);
-}
-
-mat-nav-list a.active {
-  background-color: var(--cor-primaria-50);
 }
 
 mat-nav-list mat-icon {

@@ -4,6 +4,7 @@
   color: var(--text-primary);
   min-height: 100vh;
   transition: background-color 0.3s, color 0.3s;
+  color: white;
 }
 
 .page-header {
@@ -18,12 +19,12 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--text-primary);
+  color: white;
 }
 
 .page-subtitle {
   font-size: 1rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-top: 0.5rem;
 }
 
@@ -38,7 +39,33 @@
   margin-bottom: 2.5rem;
 }
 
-.section-title {
+.section-title-info {
+  font-size: 1.5rem;
+  font-weight: 600;
+  /*color: var(--text-primary); */
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: lightblue
+}
+
+.section-title-telefone {
+  font-size: 1.5rem;
+  font-weight: 600;
+  /*color: var(--text-primary); */
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: greenyellow;
+}
+
+.section-title-alergia {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -48,6 +75,7 @@
   gap: 0.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
+  color: yellow;
 }
 
 .form-row {
@@ -61,6 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  color: black
 }
 
 .form-group label {
@@ -69,6 +98,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: black
 }
 
 .form-control {
@@ -77,9 +107,10 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   background-color: white; /* Fundo branco para visibilidade */
-  color: var(--texto-preto); /* Texto preto para contraste */
+  color: black; /* <--- AQUI! Cor do texto dentro dos inputs */
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
 }
 
 .form-control:focus {
@@ -182,7 +213,59 @@
 }
 
 .btn-secondary {
-  background-color: var(--card-bg);
+  background-color: rgb(210, 55, 55);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
+  border-radius: 16px;
+}
+
+/* Modo Escuro - Aplicar cor cinza-50 (#F9FBFC) em todos os textos e ícones */
+.dark-theme .page-container,
+.dark-theme .page-header h1,
+.dark-theme .page-subtitle,
+.dark-theme .section-title,
+.dark-theme .form-group label,
+.dark-theme .form-control,
+.dark-theme .form-control::placeholder,
+.dark-theme .error,
+.dark-theme .btn,
+.dark-theme .btn-secondary,
+.dark-theme mat-icon,
+.dark-theme .page-header h1 mat-icon,
+.dark-theme .section-title mat-icon,
+.dark-theme .form-group label mat-icon,
+.dark-theme .error mat-icon,
+.dark-theme .btn mat-icon {
+  color: #F9FBFC !important;
+}
+
+.dark-theme .form-control {
+  color: #F9FBFC !important;
+}
+
+.dark-theme .form-control::placeholder {
+  color: #F9FBFC !important;
+  opacity: 0.7;
+}
+
+.dark-theme .error {
+  color: #F9FBFC !important;
+}
+
+.dark-theme .btn-primary {
+  color: #F9FBFC !important;
+}
+
+.dark-theme .btn-secondary {
+  color: #F9FBFC !important;
+}
+
+.dark-theme .btn-add {
+  color: #F9FBFC !important;
+  border-color: #F9FBFC !important;
+}
+
+.dark-theme .btn-add:hover:not(:disabled) {
+  color: #F9FBFC !important;
+  border-color: #F9FBFC !important;
 }

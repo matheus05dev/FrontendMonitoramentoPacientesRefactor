@@ -34,6 +34,10 @@ body {
     --texto-preto: #000000;
     --texto-branco: #FFFFFF;
 
+    --text-primary:var(--cinza-200);
+    --text-secondary:var(--cinza-50);
+
+
     --bg-base: var(--cinza-50);
     --bg-surface: var(--cinza-100);
     --border: var(--cinza-300);
