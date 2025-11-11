@@ -7,6 +7,7 @@ import { API_CONFIG } from '../../config/API_CONFIG';
 import { UsuarioAutenticado } from '../types/UsuarioAutenticado';
 import { LoginRequest } from '../types/LoginRequest';
 import { TokenResponse } from '../types/TokenResponse';
+import { WebSocketService } from './websocket.service';
 
 const statusAutenticacaoInicial: UsuarioAutenticado = {
   username: '',
@@ -21,6 +22,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private tokenService = inject(TokenService);
   private router = inject(Router);
+  private webSocketService = inject(WebSocketService);
   private statusAutenticacao$ = new BehaviorSubject<UsuarioAutenticado>(
     statusAutenticacaoInicial
   );
@@ -35,12 +37,21 @@ export class AuthService {
         tap((response) => {
           const token = response.body?.token || '';
           this.setUsuarioAutenticado(token);
+          // Aguardar um pouco antes de conectar ao WebSocket para garantir que a sessão está estabelecida
+          setTimeout(() => {
+            this.webSocketService.connect().catch((error) => {
+              console.error('Erro ao conectar WebSocket após login:', error);
+              // Não bloquear a navegação se o WebSocket falhar
+            });
+          }, 500);
           this.router.navigate(['app/home']);
         })
       );
   }
 
   logout(): void {
+    // Desconectar do WebSocket antes de fazer logout
+    this.webSocketService.disconnect();
     this.limparUsuarioAutenticado();
     this.router.navigate(['']);
   }

@@ -83,21 +83,41 @@
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="tab-icon">history</mat-icon>
-                    Atividades
+                    Notificações
                 </ng-template>
                 <div class="tab-content activity-section">
-                    <div class="activity-list">
-                        <mat-card class="activity-card" *ngFor="let activity of mockActivities">
+                    <!-- Loading State -->
+                    <div *ngIf="isLoadingNotificacoes" class="loading-container">
+                        <mat-spinner diameter="50"></mat-spinner>
+                        <p>Carregando notificações...</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div *ngIf="!isLoadingNotificacoes && activities.length === 0" class="empty-state">
+                        <mat-icon>notifications_off</mat-icon>
+                        <h3>Nenhuma notificação encontrada</h3>
+                        <p>As notificações de monitoramento aparecerão aqui quando disponíveis.</p>
+                    </div>
+
+                    <!-- Notifications List -->
+                    <div *ngIf="!isLoadingNotificacoes && activities.length > 0" class="activity-list">
+                        <mat-card 
+                            class="activity-card" 
+                            *ngFor="let activity of activities"
+                            [ngClass]="[getStatusClass(activity.status), getGravidadeClass(activity.gravidade)]">
                             <div class="activity-content">
-                                <mat-icon [ngClass]="activity.type">
-                                    {{activity.type === 'patient' ? 'person' : 
-                                       activity.type === 'doctor' ? 'medical_services' : 
-                                       'event'}}
+                                <mat-icon [ngClass]="activity.type" class="activity-icon">
+                                    {{activity.icon}}
                                 </mat-icon>
                                 <div class="activity-details">
                                     <h3>{{activity.name}}</h3>
-                                    <p>{{activity.action}}</p>
-                                    <span class="activity-time">{{activity.time}}</span>
+                                    <p class="activity-action">{{activity.action}}</p>
+                                    <div class="activity-footer">
+                                        <span class="activity-time">{{activity.time}}</span>
+                                        <span *ngIf="activity.status" class="activity-status">
+                                            {{formatarStatus(activity.status)}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </mat-card>

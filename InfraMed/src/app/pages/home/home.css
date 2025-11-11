@@ -303,3 +303,245 @@
   background: rgba(255, 255, 255, 0.2);
   color: var(--accent-color);
 }
+
+/* Activity/Notifications Section */
+.activity-section {
+  min-height: 400px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.activity-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.activity-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.activity-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.activity-icon {
+  font-size: 2rem;
+  height: 2rem;
+  width: 2rem;
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.activity-icon.temperature {
+  color: #ef4444;
+}
+
+.activity-icon.heart {
+  color: #f43f5e;
+}
+
+.activity-icon.pressure {
+  color: #8b5cf6;
+}
+
+.activity-icon.alert {
+  color: #f59e0b;
+}
+
+.activity-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.activity-details h3 {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.activity-action {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.activity-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-sm);
+  gap: var(--spacing-md);
+}
+
+.activity-time {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.activity-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status Classes */
+.status-aberta {
+  border-left-color: #ef4444;
+}
+
+.status-aberta .activity-status {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.dark-theme .status-aberta .activity-status {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+.status-em-atendimento {
+  border-left-color: #f59e0b;
+}
+
+.status-em-atendimento .activity-status {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.dark-theme .status-em-atendimento .activity-status {
+  background-color: #78350f;
+  color: #fcd34d;
+}
+
+.status-fechada {
+  border-left-color: #10b981;
+}
+
+.status-fechada .activity-status {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.dark-theme .status-fechada .activity-status {
+  background-color: #064e3b;
+  color: #6ee7b7;
+}
+
+/* Gravidade Classes */
+.gravidade-emergencial {
+  border-left-width: 6px;
+  border-left-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.05);
+}
+
+.dark-theme .gravidade-emergencial {
+  background-color: rgba(220, 38, 38, 0.15);
+}
+
+.gravidade-emergencial .activity-icon {
+  color: #dc2626;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.gravidade-alerta {
+  border-left-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+.dark-theme .gravidade-alerta {
+  background-color: rgba(245, 158, 11, 0.15);
+}
+
+.gravidade-alerta .activity-icon {
+  color: #f59e0b;
+}
+
+.gravidade-normal {
+  border-left-color: #10b981;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  gap: var(--spacing-md);
+  min-height: 400px;
+}
+
+.loading-container p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.loading-container mat-spinner {
+  margin: 0 auto;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  text-align: center;
+  min-height: 400px;
+  gap: var(--spacing-md);
+}
+
+.empty-state mat-icon {
+  font-size: 4rem;
+  height: 4rem;
+  width: 4rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 400px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

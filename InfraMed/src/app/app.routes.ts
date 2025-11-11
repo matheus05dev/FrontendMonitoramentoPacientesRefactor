@@ -19,19 +19,35 @@ import { ListarAtendimentos } from './pages/atendimentos/listar-atendimentos/lis
 import { CriarAtendimentos } from './pages/atendimentos/criar-atendimentos/criar-atendimentos';
 import { EditarAtendimentos } from './pages/atendimentos/editar-atendimentos/editar-atendimentos';
 import { InfoAtendimento } from './pages/atendimentos/info-atendimento/info-atendimento';
+import { ListarLeituras } from './pages/leituras/listar-leituras/listar-leituras';
+import { InfoLeitura } from './pages/leituras/info-leitura/info-leitura';
+import { ListarNotificacoes } from './pages/notificacoes/listar-notificacoes/listar-notificacoes';
+import { InfoNotificacao } from './pages/notificacoes/info-notificacao/info-notificacao';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'app',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'app',  
+    path: 'login',
+    component: Login,
+  },
+  {
+    path: 'app',
     component: ToolbarSidenav,
+    canActivate: [authGuard],
     children: [
-     // { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: Home },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: Home
+      },
       {
         path: 'funcionarios',
         component: ListarFuncionarios,
@@ -95,6 +111,22 @@ export const routes: Routes = [
       {
         path: 'atendimentos/info/:id',
         component: InfoAtendimento,
+      },
+      {
+        path: 'leituras',
+        component: ListarLeituras,
+      },
+      {
+        path: 'leituras/info/:id',
+        component: InfoLeitura,
+      },
+      {
+        path: 'notificacoes',
+        component: ListarNotificacoes,
+      },
+      {
+        path: 'notificacoes/info/:id',
+        component: InfoNotificacao,
       },
     ],
   },
