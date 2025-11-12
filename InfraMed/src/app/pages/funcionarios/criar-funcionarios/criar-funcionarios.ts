@@ -8,6 +8,7 @@ import {
   FormArray,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeRequestDTO } from '../../../core/types/FuncionarioRequest';
 import { Sexo } from '../../../core/enum/Sexo.enum';
@@ -15,7 +16,7 @@ import { Cargo } from '../../../core/enum/Cargo.enum';
 
 @Component({
   selector: 'app-criar-funcionarios',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './criar-funcionarios.html',
   styleUrl: './criar-funcionarios.css',
 })
@@ -23,6 +24,7 @@ export class CriarFuncionarios {
   form: FormGroup;
   sexos = Object.values(Sexo);
   cargos = Object.values(Cargo);
+  isDarkMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +42,8 @@ export class CriarFuncionarios {
       especialidades: this.fb.array([]),
       identificacao: ['', Validators.required],
     });
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   get telefones(): FormArray {

@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { QuartosService } from '../../../core/services/quartos.service';
 import { QuartoRequest } from '../../../core/types/QuartoRequest';
 import { QuartoResponse } from '../../../core/types/QuartoResponse';
@@ -15,7 +16,7 @@ import { TipoQuarto } from '../../../core/enum/TipoQuarto.enum';
 
 @Component({
   selector: 'app-editar-quartos',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './editar-quartos.html',
   styleUrls: ['./editar-quartos.css'],
 })
@@ -24,6 +25,7 @@ export class EditarQuartos implements OnInit {
   id: number;
   localizacoes = Object.values(LocalizacaoQuarto);
   tipos = Object.values(TipoQuarto);
+  isDarkMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +40,8 @@ export class EditarQuartos implements OnInit {
       tipo: ['', Validators.required],
       capacidade: ['', [Validators.required, Validators.min(1)]],
     });
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   ngOnInit(): void {

@@ -37,6 +37,8 @@ body {
     --text-primary:var(--cinza-200);
     --text-secondary:var(--cinza-50);
 
+    --text-color-caixa: #1a1a1a;
+
 
     --bg-base: var(--cinza-50);
     --bg-surface: var(--cinza-100);
