@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { QuartosService } from '../../../core/services/quartos.service';
 import { QuartoRequest } from '../../../core/types/QuartoRequest';
 import { LocalizacaoQuarto } from '../../../core/enum/LocalizacaoQuarto.enum';
@@ -14,7 +15,7 @@ import { TipoQuarto } from '../../../core/enum/TipoQuarto.enum';
 
 @Component({
   selector: 'app-criar-quartos',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './criar-quartos.html',
   styleUrls: ['./criar-quartos.css'],
 })
@@ -22,6 +23,7 @@ export class CriarQuartos {
   form: FormGroup;
   localizacoes = Object.values(LocalizacaoQuarto);
   tipos = Object.values(TipoQuarto);
+  isDarkMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +36,8 @@ export class CriarQuartos {
       tipo: ['', Validators.required],
       capacidade: ['', [Validators.required, Validators.min(1)]],
     });
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   onSubmit(): void {

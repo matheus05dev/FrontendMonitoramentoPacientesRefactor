@@ -107,10 +107,15 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   background-color: white; /* Fundo branco para visibilidade */
-  color: black; /* <--- AQUI! Cor do texto dentro dos inputs */
+  color: var(--text-color-caixa); /* Cor do texto dentro dos inputs */
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   border-radius: 10px;
+}
+
+.form-control::placeholder {
+  color: var(--text-color-caixa);
+  opacity: 0.6;
 }
 
 .form-control:focus {

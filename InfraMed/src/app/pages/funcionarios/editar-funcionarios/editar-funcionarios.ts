@@ -8,6 +8,7 @@ import {
   FormArray,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeRequestDTO } from '../../../core/types/FuncionarioRequest';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
@@ -16,7 +17,7 @@ import { Cargo } from '../../../core/enum/Cargo.enum';
 
 @Component({
   selector: 'app-editar-funcionarios',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './editar-funcionarios.html',
   styleUrl: './editar-funcionarios.css',
 })
@@ -25,6 +26,7 @@ export class EditarFuncionarios implements OnInit {
   id: number;
   sexos = Object.values(Sexo);
   cargos = Object.values(Cargo);
+  isDarkMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +46,8 @@ export class EditarFuncionarios implements OnInit {
       especialidades: this.fb.array([]),
       identificacao: ['', Validators.required],
     });
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   ngOnInit(): void {

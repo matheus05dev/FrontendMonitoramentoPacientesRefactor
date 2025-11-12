@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { AtendimentosService } from '../../../core/services/atendimentos.service';
 import { PacientesService } from '../../../core/services/pacientes.service';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
@@ -18,7 +19,7 @@ import { StatusMonitoramento } from '../../../core/enum/StatusMonitoramento.enum
 
 @Component({
   selector: 'app-criar-atendimentos',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   standalone: true,
   templateUrl: './criar-atendimentos.html',
   styleUrl: './criar-atendimentos.css',
@@ -27,6 +28,7 @@ export class CriarAtendimentos implements OnInit {
   form!: FormGroup;
   loading = false;
   error: string | null = null;
+  isDarkMode = false;
 
   pacientes: PacienteResponse[] = [];
   medicos: FuncionarioSaudeResponseDTO[] = [];
@@ -61,6 +63,8 @@ export class CriarAtendimentos implements OnInit {
       observacoes: [''],
       statusMonitoramento: [''],
     });
+    // Check for dark theme
+    this.isDarkMode = document.body.classList.contains('dark-theme');
   }
 
   carregarPacientes(): void {
@@ -97,7 +101,6 @@ export class CriarAtendimentos implements OnInit {
       this.atendimentosService.criar(request).subscribe({
         next: () => {
           this.loading = false;
-          alert('Atendimento criado com sucesso!');
           this.router.navigate(['app/atendimentos']);
         },
         error: (err) => {
