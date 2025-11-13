@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { PacientesService } from '../../../core/services/pacientes.service';
 import { PacienteResponse } from '../../../core/types/PacienteResponse';
 
 @Component({
   selector: 'app-info-paciente',
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './info-paciente.html',
   styleUrls: ['./info-paciente.css'],
 })

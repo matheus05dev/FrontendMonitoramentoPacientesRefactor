@@ -10,16 +10,14 @@
                 <mat-icon>home</mat-icon>
                 <span>Home</span>
             </a>
-            <a mat-list-item routerLink="/app/pacientes" routerLinkActive="active">
-                <mat-icon>people</mat-icon>
-                <span>Pacientes</span>
-            </a>
             <a mat-list-item routerLink="/app/funcionarios" routerLinkActive="active">
                 <mat-icon>badge</mat-icon>
                 <span>Funcionários</span>
             </a>
-
-            
+        <a mat-list-item routerLink="/app/pacientes" routerLinkActive="active">
+            <mat-icon>people</mat-icon>
+            <span>Pacientes</span>
+        </a>
         <a mat-list-item routerLink="/app/quartos" routerLinkActive="active">
             <mat-icon>hotel</mat-icon>
             <span>Quartos</span>
@@ -30,15 +28,11 @@
             <span>Atendimentos</span>
         </a>
 
-       
-
-
-            
-            <mat-divider></mat-divider>
-            <a mat-list-item (click)="logout()">
-                <mat-icon>logout</mat-icon>
-                <span>Sair</span>
-            </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Sair</span>
+        </a>
         </mat-nav-list>
     </mat-drawer>
 
@@ -67,14 +61,5 @@
     <button mat-menu-item>
         <mat-icon>person</mat-icon>
         <span>Perfil</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>Configurações</span>
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Sair</span>
     </button>
 </mat-menu>
