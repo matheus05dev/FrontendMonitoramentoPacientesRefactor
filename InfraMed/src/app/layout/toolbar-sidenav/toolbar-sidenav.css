@@ -5,8 +5,8 @@
 
 .sidenav {
   width: var(--sidenav-width);
-  background-color: var(--cinza-800);
-  border-right: 1px solid var(--cinza-700);
+  background-color: var(--cinza-400);
+  border-right: 1px solid var(--cinza-100);
   
 }
 
@@ -89,11 +89,11 @@ mat-nav-list mat-icon {
 /* Dark mode */
 .dark-theme {
   .sidenav {
-    background-color: var(--cinza-900);
+    background-color: var(--cinza-400);
   }
 
   .main-content {
-    background-color: var(--cinza-800);
+    background-color: var(--cinza-200);
   }
 }
 
