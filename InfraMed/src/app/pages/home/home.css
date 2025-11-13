@@ -256,7 +256,8 @@
 
 .header-hero-buttons {
   display: flex;
-  gap: var(--spacing-xl); /* Aumenta o espaço entre os botões */
+  flex-direction: column;
+  gap: var(--spacing-xl); 
   margin-top: var(--spacing-xl);
   justify-content: center;
 }

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
 
 @Component({
   selector: 'app-info-funcionario',
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './info-funcionario.html',
   styleUrl: './info-funcionario.css',
 })
