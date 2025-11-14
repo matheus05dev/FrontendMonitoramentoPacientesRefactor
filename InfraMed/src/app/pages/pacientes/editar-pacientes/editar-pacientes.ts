@@ -13,6 +13,7 @@ import { PacienteRequest } from '../../../core/types/PacienteRequest';
 import { PacienteResponse } from '../../../core/types/PacienteResponse';
 import { Sexo } from '../../../core/enum/Sexo.enum';
 import { MatIconModule } from '@angular/material/icon';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-pacientes',
@@ -29,7 +30,9 @@ export class EditarPacientes implements OnInit {
     private fb: FormBuilder,
     private pacientesService: PacientesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
   ) {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.form = this.fb.group({
@@ -136,9 +139,10 @@ export class EditarPacientes implements OnInit {
       };
       this.pacientesService.atualizar(this.id, paciente).subscribe({
         next: () => this.router.navigate(['app/pacientes']),
-        error: (err) => console.error('Erro ao atualizar paciente:', err),
+        error: (err) => this.toastr.error('Erro ao atualizar paciente:', err),
       });
     }
+    
   }
 
   cancel(): void {

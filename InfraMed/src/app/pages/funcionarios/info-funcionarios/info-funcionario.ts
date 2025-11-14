@@ -5,21 +5,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-info-funcionario',
+  standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './info-funcionario.html',
-  styleUrl: './info-funcionario.css',
+  styleUrls: ['./info-funcionario.css'],
 })
 export class InfoFuncionarios implements OnInit {
   funcionario: FuncionarioSaudeResponseDTO | null = null;
   id: number;
+  
 
   constructor(
     private funcionariosService: FuncionariosService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.id = +this.route.snapshot.paramMap.get('id')!;
   }
@@ -31,7 +35,7 @@ export class InfoFuncionarios implements OnInit {
   loadFuncionario(): void {
     this.funcionariosService.buscarPorId(this.id).subscribe({
       next: (func) => (this.funcionario = func),
-      error: (err) => console.error('Erro ao carregar funcionário:', err),
+      error: (err) => this.toastr.error('Erro ao carregar informações do funcionário.'),
     });
   }
 

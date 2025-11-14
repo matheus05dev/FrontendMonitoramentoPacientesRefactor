@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-funcionarios',
@@ -29,7 +30,8 @@ export class ListarFuncionarios implements OnInit {
 
   constructor(
     private funcionariosService: FuncionariosService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {

@@ -51,6 +51,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-xl);
+  
 }
 
 /* Tab Styles */
@@ -69,38 +70,26 @@
 
 .mat-tab-group .mat-tab-label-active {
   color: #ffffff !important;
-  opacity: 1;
-}
-
-.tab-icon {
-  margin-right: var(--spacing-sm);
-}
-
-.tab-content {
-  padding: var(--spacing-xl) 0;
-  color: var(--text-primary);
-}
-
-/* About Section */
-.about-section {
-  text-align: center;
-}
-
-.about-section h2 {
-  color: var(--text-primary);
-  font-size: 2rem;
-  margin-bottom: var(--spacing-xl);
-  font-weight: 700;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-xl);
-}
-
-.about-card {
+  :root {
+  
+  
+    /* Animations */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+  
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-full: 9999px;
+  }
   background: var(--card-bg);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
@@ -115,7 +104,6 @@
   gap: var(--spacing-xl); 
   margin-top: 200px;
   justify-content: center;
-
 }
 
 .header-hero-btn-funcionarios {
@@ -175,6 +163,7 @@
   left: 0;
   opacity: 0;
   animation: slideshow 20s ease-in-out infinite;
+   filter: blur(4px) brightness(60%);
 }
 
 .header-hero-slideshow img:nth-child(1) {
@@ -295,6 +284,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: white;
 }
 
 .header-hero-subtitle {
@@ -306,6 +296,7 @@
   max-width: 600px;
   line-height: 1.4;
   margin: 0;
+  color: white;
 }
 
 .header-hero-buttons {
@@ -331,6 +322,25 @@
   letter-spacing: 0.5px;
   backdrop-filter: blur(10px);
   border: 2px solid transparent;
+}
+
+/* Ensure mat-icon sits nicely inside hero buttons */
+.header-hero-btn mat-icon,
+.header-hero-btn-funcionarios mat-icon,
+.header-hero-btn-pacientes mat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  height: 1rem;
+  width: 1.7rem;
+  margin-right: calc(var(--spacing-sm) / 2);
+  vertical-align: middle;
+  color: inherit;
+}
+
+.header-hero-btn span {
+  display: inline-block;
 }
 
 .header-hero-btn.primary {
