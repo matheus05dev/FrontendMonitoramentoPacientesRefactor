@@ -1,28 +1,26 @@
 <div class="main-container" [class.dark-theme]="isDarkMode">
-    <button mat-icon-button class="theme-toggle" (click)="toggleTheme()" [matTooltip]="isDarkMode ? 'Modo claro' : 'Modo escuro'">
-        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
-    </button>
+    
     <div class="header-hero-section">
         <div class="header-hero-text">
             <h1 class="header-hero-title">INFRAMED</h1>
             <h2 class="header-hero-subtitle">Sistema Inteligente de Gestão Hospitalar</h2>
             <div class="header-hero-buttons">
-                <button mat-raised-button class="header-hero-btn funcionarios" routerLink="/app/funcionarios">
+                <button mat-raised-button class="header-hero-btn-funcionarios" routerLink="/app/funcionarios">
                     <mat-icon>group</mat-icon>
                     <span>Funcionários</span>
                 </button>
-                <button mat-raised-button class="header-hero-btn pacientes" routerLink="/app/pacientes">
+                <button mat-raised-button class="header-hero-btn-pacientes" routerLink="/app/pacientes">
                     <mat-icon>personal_injury</mat-icon>
                     <span>Pacientes</span>
                 </button>
             </div>
         </div>
         <div class="header-hero-slideshow">
-            <img src="header-hero1.jpg" alt="Hero Banner 1">
-            <img src="header-hero2.jpg" alt="Hero Banner 2">
-            <img src="header-hero3.jpg" alt="Hero Banner 3">
-            <img src="header-hero4.jpg" alt="Hero Banner 4">
-            <img src="header-hero2.jpg" alt="Hero Banner 5">
+            <img src="https://www.ufba.br/sites/portal.ufba.br/files/noticias/hospital_dia_3.jpeg" alt="Hero Banner 1">
+            <img src="https://plus.unsplash.com/premium_photo-1682130157004-057c137d96d5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FsYSUyMGRlJTIwZXNwZXJhJTIwZG8lMjBob3NwaXRhbHxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000" alt="Hero Banner 2">
+            <img src="https://media.istockphoto.com/id/1431625668/pt/foto/empty-modern-hospital-corridor.jpg?s=612x612&w=0&k=20&c=UmztJDu6KYsJffi1QU5othEyCWzI8jc-k_t6CQy5pGE=" alt="Hero Banner 3">
+            <img src="https://images.adsttc.com/media/images/60da/30a5/447a/9201/6532/dffa/large_jpg/bicubik-6793.jpg?1624912053" alt="Hero Banner 4">
+            
         </div>
     </div>
 
@@ -58,7 +56,7 @@
 
             <!-- Rooms Tab -->
             <mat-tab>
-                <ng-template mat-tab-label>
+                <ng-template mat-tab-label class="mat-tab-infos">
                     <mat-icon class="tab-icon">door_front</mat-icon>
                     Quartos
                 </ng-template>
@@ -81,7 +79,7 @@
 
             <!-- Activity Tab -->
             <mat-tab>
-                <ng-template mat-tab-label>
+                <ng-template mat-tab-label class="mat-tab-infos">
                     <mat-icon class="tab-icon">history</mat-icon>
                     Notificações
                 </ng-template>

@@ -19,6 +19,7 @@ import { Diagnostico } from '../../../core/enum/Diagnostico.enum';
 import { StatusMonitoramento } from '../../../core/enum/StatusMonitoramento.enum';
 import { StatusPaciente } from '../../../core/enum/StatusPaciente.enum';
 import { MatIconModule } from '@angular/material/icon';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-atendimentos',
@@ -46,7 +47,8 @@ export class EditarAtendimentos implements OnInit {
     private pacientesService: PacientesService,
     private funcionariosService: FuncionariosService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class EditarAtendimentos implements OnInit {
         this.preencherFormulario(atendimento);
       },
       error: (err) => {
-        this.error = 'Erro ao carregar dados';
+        this.toastr.error('Erro ao carregar dados');
         console.error(err);
       },
     });
@@ -147,12 +149,12 @@ export class EditarAtendimentos implements OnInit {
         .subscribe({
           next: () => {
             this.loading = false;
-            alert('Atendimento atualizado com sucesso!');
+            this.toastr.success('Atendimento atualizado com sucesso!');
             this.router.navigate(['app/atendimentos']);
           },
           error: (err) => {
             this.loading = false;
-            this.error = 'Erro ao atualizar atendimento';
+            this.toastr.error('Erro ao atualizar atendimento');
             console.error(err);
           },
         });

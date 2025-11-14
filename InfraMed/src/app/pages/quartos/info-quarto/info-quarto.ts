@@ -10,6 +10,7 @@ import { QuartosService } from '../../../core/services/quartos.service';
 import { PacientesService } from '../../../core/services/pacientes.service';
 import { QuartoResponse } from '../../../core/types/QuartoResponse';
 import { PacienteResponse } from '../../../core/types/PacienteResponse';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-info-quarto',
@@ -29,7 +30,8 @@ export class InfoQuarto implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private quartosService: QuartosService,
-    private pacientesService: PacientesService
+    private pacientesService: PacientesService,
+    private toastr: ToastrService
   ) {
     this.id = +this.route.snapshot.paramMap.get('id')!;
   }
@@ -89,11 +91,11 @@ export class InfoQuarto implements OnInit {
             this.quarto = updatedQuarto;
             this.selectedAllocate = null;
             this.updatePatientLists();
-            alert('Paciente alocado com sucesso!');
+            this.toastr.success('Paciente alocado com sucesso!');
           },
           error: (err) => {
             console.error('Erro ao alocar paciente:', err);
-            alert('Erro ao alocar paciente.');
+            this.toastr.error('Erro ao alocar paciente.');
           },
         });
     }
@@ -104,11 +106,11 @@ export class InfoQuarto implements OnInit {
       next: (updatedQuarto) => {
         this.quarto = updatedQuarto;
         this.updatePatientLists();
-        alert('Paciente removido com sucesso!');
+        this.toastr.success('Paciente removido com sucesso!');
       },
       error: (err) => {
         console.error('Erro ao remover paciente:', err);
-        alert('Erro ao remover paciente.');
+        this.toastr.error('Erro ao remover paciente.');
       },
     });
   }

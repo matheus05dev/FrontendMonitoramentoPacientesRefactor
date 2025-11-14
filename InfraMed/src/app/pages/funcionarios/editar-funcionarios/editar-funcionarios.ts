@@ -14,6 +14,7 @@ import { FuncionarioSaudeRequestDTO } from '../../../core/types/FuncionarioReque
 import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResponse';
 import { Sexo } from '../../../core/enum/Sexo.enum';
 import { Cargo } from '../../../core/enum/Cargo.enum';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-funcionarios',
@@ -35,7 +36,8 @@ export class EditarFuncionarios implements OnInit {
     private fb: FormBuilder,
     private funcionariosService: FuncionariosService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.isDarkMode = document.body.classList.contains('dark-theme');
   }
@@ -163,12 +165,12 @@ export class EditarFuncionarios implements OnInit {
       this.funcionariosService.atualizar(this.funcionarioId, funcionario).subscribe({
         next: () => {
           this.loading = false;
-          alert('Funcionário atualizado com sucesso!');
+          this.toastr.success('Funcionário atualizado com sucesso!');
           this.router.navigate(['app/funcionarios']);
         },
         error: (err) => {
           this.loading = false;
-          this.error = 'Erro ao atualizar funcionário';
+          this.toastr.error('Erro ao atualizar funcionário');
           console.error(err);
         },
       });
