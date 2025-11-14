@@ -12,10 +12,11 @@ import { PacientesService } from '../../../core/services/pacientes.service';
 import { PacienteRequest } from '../../../core/types/PacienteRequest';
 import { PacienteResponse } from '../../../core/types/PacienteResponse';
 import { Sexo } from '../../../core/enum/Sexo.enum';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-editar-pacientes',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './editar-pacientes.html',
   styleUrls: ['./editar-pacientes.css'],
 })

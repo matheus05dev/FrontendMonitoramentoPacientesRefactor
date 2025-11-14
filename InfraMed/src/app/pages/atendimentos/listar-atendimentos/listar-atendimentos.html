@@ -27,11 +27,20 @@
         <td>{{atendimento.dataEntrada | date:'short'}}</td>
         <td>{{atendimento.dataSaida | date:'short'}}</td>
         <td>{{atendimento.numeroQuarto}}
-        <td>
-          <button class="btn btn-info btn-sm me-1" (click)="navegarParaInfo(atendimento.id!)">Ver</button>
-          <button class="btn btn-warning btn-sm me-1" (click)="navegarParaEditar(atendimento.id!)">Editar</button>
-          <button class="btn btn-danger btn-sm" (click)="deletarAtendimento(atendimento.id!)">Deletar</button>
-        </td>
+    
+        
+          <td class="actions">
+            <button class="info" (click)="navegarParaInfo(atendimento.id!)" matTooltip="Ver detalhes">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button class="warning" (click)="navegarParaEditar(atendimento.id!)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="danger" (click)="deletarAtendimento(atendimento.id!)" matTooltip="Excluir">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+      
       </tr>
     </tbody>
   </table>

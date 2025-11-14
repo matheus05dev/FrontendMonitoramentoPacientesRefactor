@@ -25,17 +25,19 @@
         <td>{{ func.email }}</td>
         <td>{{ func.cpf }}</td>
         <td>{{ func.cargo }}</td>
+
         <td class="actions">
-          <button class="secondary" (click)="viewFuncionario(func.id)" matTooltip="Ver detalhes">
+          <button class="info" (click)="viewFuncionario(func.id)"matTooltip="Ver detalhes">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button class="secondary" (click)="editFuncionario(func.id)" matTooltip="Editar">
+          <button class="warning" (click)="editFuncionario(func.id)" matTooltip="Editar">
             <mat-icon>edit</mat-icon>
           </button>
           <button class="danger" (click)="deleteFuncionario(func.id)" matTooltip="Excluir">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
+     
       </tr>
     </tbody>
   </table>

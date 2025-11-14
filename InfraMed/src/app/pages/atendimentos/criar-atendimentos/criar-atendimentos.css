@@ -102,7 +102,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: black
+  color: white
 }
 
 .form-control {
@@ -205,53 +205,5 @@ textarea.form-control {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 16px;
-}
-
-/* Modo Escuro - Aplicar cor cinza-50 (#F9FBFC) em todos os textos e ícones */
-.dark-theme .page-container,
-.dark-theme .page-header h1,
-.dark-theme .page-subtitle,
-.dark-theme .section-title,
-.dark-theme .form-group label,
-.dark-theme .form-control,
-.dark-theme .form-control::placeholder,
-.dark-theme .error,
-.dark-theme .error-message,
-.dark-theme .btn,
-.dark-theme .btn-secondary,
-.dark-theme mat-icon,
-.dark-theme .page-header h1 mat-icon,
-.dark-theme .section-title mat-icon,
-.dark-theme .form-group label mat-icon,
-.dark-theme .error mat-icon,
-.dark-theme .btn mat-icon {
-  color: #F9FBFC !important;
-}
-
-.dark-theme .form-control {
-  color: #F9FBFC !important;
-}
-
-.dark-theme .form-control::placeholder {
-  color: #F9FBFC !important;
-  opacity: 0.7;
-}
-
-.dark-theme .error {
-  color: #F9FBFC !important;
-}
-
-.dark-theme .error-message {
-  background-color: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
-  color: #F9FBFC !important;
-}
-
-.dark-theme .btn-primary {
-  color: #F9FBFC !important;
-}
-
-.dark-theme .btn-secondary {
-  color: #F9FBFC !important;
 }
 

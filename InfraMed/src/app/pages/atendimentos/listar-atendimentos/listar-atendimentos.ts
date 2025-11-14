@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AtendimentosService } from '../../../core/services/atendimentos.service';
 import { AtendimentoResponse } from '../../../core/types/AtendimentoResponse';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-listar-atendimentos',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule
+  ],
   standalone: true,
   templateUrl: './listar-atendimentos.html',
   styleUrl: './listar-atendimentos.css',

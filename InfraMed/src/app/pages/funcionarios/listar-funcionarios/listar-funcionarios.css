@@ -52,7 +52,7 @@ button {
 
 button.primary {
   background-color: var(--accent-color);
-  color: white;
+  color: var(--text-primary);
 }
 
 button.secondary {
@@ -60,9 +60,10 @@ button.secondary {
   color: var(--text-primary);
 }
 
-button.danger {
-  background-color: #ef4444;
-  color: white;
+button.outline {
+  background-color: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-primary);
 }
 
 button:hover {

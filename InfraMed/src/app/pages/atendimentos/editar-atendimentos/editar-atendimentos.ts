@@ -18,10 +18,11 @@ import { FuncionarioSaudeResponseDTO } from '../../../core/types/FuncionarioResp
 import { Diagnostico } from '../../../core/enum/Diagnostico.enum';
 import { StatusMonitoramento } from '../../../core/enum/StatusMonitoramento.enum';
 import { StatusPaciente } from '../../../core/enum/StatusPaciente.enum';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-editar-atendimentos',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   standalone: true,
   templateUrl: './editar-atendimentos.html',
   styleUrl: './editar-atendimentos.css',

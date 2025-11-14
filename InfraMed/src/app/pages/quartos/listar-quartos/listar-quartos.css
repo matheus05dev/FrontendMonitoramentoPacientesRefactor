@@ -50,22 +50,18 @@ button {
 
 button.primary {
   background-color: var(--accent-color);
-  color: white;
+  color: var(--text-primary);
 }
 
-button.info {
-  background-color: #3b82f6;
-  color: white;
+button.secondary {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
 }
 
-button.warning {
-  background-color: #f59e0b;
-  color: white;
-}
-
-button.danger {
-  background-color: #ef4444;
-  color: white;
+button.outline {
+  background-color: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-primary);
 }
 
 button:hover {
