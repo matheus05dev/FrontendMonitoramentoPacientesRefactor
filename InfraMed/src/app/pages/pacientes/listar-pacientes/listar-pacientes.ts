@@ -30,6 +30,7 @@ import { PacienteResponse } from '../../../core/types/PacienteResponse';
 })
 export class ListarPacientes implements OnInit {
   pacientes: PacienteResponse[] = [];
+  filteredPacientes: PacienteResponse[] = [];
   searchNome: string = '';
   loading = false;
 
@@ -47,6 +48,7 @@ export class ListarPacientes implements OnInit {
     this.pacientesService.listarTodos().subscribe({
       next: (data) => {
         this.pacientes = data;
+        this.filteredPacientes = data;
         this.loading = false;
       },
       error: (err) => {
@@ -56,21 +58,17 @@ export class ListarPacientes implements OnInit {
     });
   }
 
-  searchByNome(): void {
+  onSearch(): void {
     if (this.searchNome.trim()) {
-      this.loading = true;
-      this.pacientesService.buscarPorNome(this.searchNome).subscribe({
-        next: (data) => {
-          this.pacientes = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('Erro ao buscar pacientes:', err);
-          this.loading = false;
-        },
-      });
+      const term = this.searchNome.toLowerCase().trim();
+      this.filteredPacientes = this.pacientes.filter(
+        (paciente) =>
+          paciente.nome?.toLowerCase().includes(term) ||
+          paciente.email?.toLowerCase().includes(term) ||
+          paciente.cpf?.includes(term)
+      );
     } else {
-      this.loadPacientes();
+      this.filteredPacientes = this.pacientes;
     }
   }
 

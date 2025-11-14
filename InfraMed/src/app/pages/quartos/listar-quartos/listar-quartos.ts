@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +14,7 @@ import { QuartoResponse } from '../../../core/types/QuartoResponse';
   selector: 'app-listar-quartos',
   imports: [
     CommonModule,
+    FormsModule,
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
@@ -24,6 +26,8 @@ import { QuartoResponse } from '../../../core/types/QuartoResponse';
 })
 export class ListarQuartos implements OnInit {
   quartos: QuartoResponse[] = [];
+  filteredQuartos: QuartoResponse[] = [];
+  searchTerm: string = '';
   loading = false;
 
   constructor(private quartosService: QuartosService, private router: Router) {}
@@ -37,6 +41,7 @@ export class ListarQuartos implements OnInit {
     this.quartosService.listarTodos().subscribe({
       next: (data) => {
         this.quartos = data;
+        this.filteredQuartos = data;
         this.loading = false;
       },
       error: (err) => {
@@ -44,6 +49,20 @@ export class ListarQuartos implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  onSearch(): void {
+    if (this.searchTerm.trim()) {
+      const term = this.searchTerm.toLowerCase().trim();
+      this.filteredQuartos = this.quartos.filter(
+        (quarto) =>
+          quarto.numero?.toString().includes(term) ||
+          quarto.localizacao?.toLowerCase().includes(term) ||
+          quarto.tipo?.toLowerCase().includes(term)
+      );
+    } else {
+      this.filteredQuartos = this.quartos;
+    }
   }
 
   viewQuarto(id: number): void {

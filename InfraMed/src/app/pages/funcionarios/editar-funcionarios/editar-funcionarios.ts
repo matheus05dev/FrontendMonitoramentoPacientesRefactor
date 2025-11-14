@@ -7,7 +7,7 @@ import {
   Validators,
   FormArray,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FuncionariosService } from '../../../core/services/funcionarios.service';
 import { FuncionarioSaudeRequestDTO } from '../../../core/types/FuncionarioRequest';
@@ -18,12 +18,15 @@ import { Cargo } from '../../../core/enum/Cargo.enum';
 @Component({
   selector: 'app-editar-funcionarios',
   imports: [CommonModule, ReactiveFormsModule, MatIconModule],
+  standalone: true,
   templateUrl: './editar-funcionarios.html',
   styleUrl: './editar-funcionarios.css',
 })
 export class EditarFuncionarios implements OnInit {
-  form: FormGroup;
-  id: number;
+  form!: FormGroup;
+  funcionarioId!: number;
+  loading = false;
+  error: string | null = null;
   sexos = Object.values(Sexo);
   cargos = Object.values(Cargo);
   isDarkMode = false;
@@ -31,10 +34,15 @@ export class EditarFuncionarios implements OnInit {
   constructor(
     private fb: FormBuilder,
     private funcionariosService: FuncionariosService,
-    private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.id = +this.route.snapshot.paramMap.get('id')!;
+    this.isDarkMode = document.body.classList.contains('dark-theme');
+  }
+
+  ngOnInit(): void {
+    this.funcionarioId = +this.route.snapshot.paramMap.get('id')!;
+
     this.form = this.fb.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -46,12 +54,8 @@ export class EditarFuncionarios implements OnInit {
       especialidades: this.fb.array([]),
       identificacao: ['', Validators.required],
     });
-    // Check for dark theme
-    this.isDarkMode = document.body.classList.contains('dark-theme');
-  }
 
-  ngOnInit(): void {
-    this.loadFuncionario();
+    this.carregarFuncionario();
   }
 
   get telefones(): FormArray {
@@ -62,49 +66,69 @@ export class EditarFuncionarios implements OnInit {
     return this.form.get('especialidades') as FormArray;
   }
 
-  loadFuncionario(): void {
-    this.funcionariosService.buscarPorId(this.id).subscribe({
-      next: (func) => {
-        if (func) {
-          this.form.patchValue({
-            nome: func.nome,
-            email: func.email,
-            sexo: func.sexo,
-            dataNascimento: func.dataNascimento,
-            cpf: func.cpf,
-            cargo: func.cargo,
-            identificacao: func.identificacao,
-          });
-          // Clear existing arrays
-          while (this.telefones.length) {
-            this.telefones.removeAt(0);
-          }
-          while (this.especialidades.length) {
-            this.especialidades.removeAt(0);
-          }
-          // Set telefones
-          func.telefones.forEach((tel) => {
-            this.telefones.push(
-              this.fb.group({
-                DDD: [tel.ddd ? tel.ddd.toString() : '', Validators.required],
-                numero: [tel.numero || '', Validators.required],
-              })
-            );
-          });
-          // Set especialidades
-          func.especialidades.forEach((esp) => {
-            this.especialidades.push(this.fb.control(esp, Validators.required));
-          });
+  carregarFuncionario(): void {
+    this.loading = true;
+    this.funcionariosService.buscarPorId(this.funcionarioId).subscribe({
+      next: (funcionario) => {
+        if (funcionario) {
+          this.preencherFormulario(funcionario);
+        } else {
+          this.error = 'Funcionário não encontrado';
         }
+        this.loading = false;
       },
-      error: (err) => console.error('Erro ao carregar funcionário:', err),
+      error: (err) => {
+        this.error = 'Erro ao carregar funcionário';
+        this.loading = false;
+        console.error(err);
+      },
+    });
+  }
+
+  preencherFormulario(funcionario: FuncionarioSaudeResponseDTO): void {
+    // Limpar arrays existentes
+    while (this.telefones.length !== 0) {
+      this.telefones.removeAt(0);
+    }
+    while (this.especialidades.length !== 0) {
+      this.especialidades.removeAt(0);
+    }
+
+    // Preencher telefones
+    if (funcionario.telefones && funcionario.telefones.length > 0) {
+      funcionario.telefones.forEach((tel) => {
+        this.telefones.push(
+          this.fb.group({
+            DDD: [tel.ddd.toString(), [Validators.required, Validators.pattern(/^\d+$/)]],
+            numero: [tel.numero, Validators.required],
+          })
+        );
+      });
+    }
+
+    // Preencher especialidades
+    if (funcionario.especialidades && funcionario.especialidades.length > 0) {
+      funcionario.especialidades.forEach((esp) => {
+        this.especialidades.push(this.fb.control(esp, Validators.required));
+      });
+    }
+
+    // Preencher outros campos
+    this.form.patchValue({
+      nome: funcionario.nome,
+      email: funcionario.email,
+      sexo: funcionario.sexo,
+      dataNascimento: funcionario.dataNascimento,
+      cpf: funcionario.cpf,
+      cargo: funcionario.cargo,
+      identificacao: funcionario.identificacao,
     });
   }
 
   addTelefone(): void {
     this.telefones.push(
       this.fb.group({
-        DDD: ['', Validators.required],
+        DDD: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
         numero: ['', Validators.required],
       })
     );
@@ -124,6 +148,9 @@ export class EditarFuncionarios implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
+      this.loading = true;
+      this.error = null;
+
       const formValue = this.form.value;
       const funcionario: FuncionarioSaudeRequestDTO = {
         ...formValue,
@@ -132,10 +159,21 @@ export class EditarFuncionarios implements OnInit {
           numero: tel.numero,
         })),
       };
-      this.funcionariosService.atualizar(this.id, funcionario).subscribe({
-        next: () => this.router.navigate(['app/funcionarios']),
-        error: (err) => console.error('Erro ao atualizar funcionário:', err),
+
+      this.funcionariosService.atualizar(this.funcionarioId, funcionario).subscribe({
+        next: () => {
+          this.loading = false;
+          alert('Funcionário atualizado com sucesso!');
+          this.router.navigate(['app/funcionarios']);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.error = 'Erro ao atualizar funcionário';
+          console.error(err);
+        },
       });
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 

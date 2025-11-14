@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AtendimentosService } from '../../../core/services/atendimentos.service';
 import { AtendimentoResponse } from '../../../core/types/AtendimentoResponse';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-listar-atendimentos',
-  imports: [CommonModule, MatIconModule
-  ],
+  imports: [CommonModule, FormsModule, MatIconModule, MatTooltipModule],
   standalone: true,
   templateUrl: './listar-atendimentos.html',
   styleUrl: './listar-atendimentos.css',
 })
 export class ListarAtendimentos implements OnInit {
   atendimentos: AtendimentoResponse[] = [];
+  filteredAtendimentos: AtendimentoResponse[] = [];
+  searchTerm: string = '';
   loading = true;
   error: string | null = null;
 
@@ -31,6 +34,7 @@ export class ListarAtendimentos implements OnInit {
     this.atendimentosService.listarTodos().subscribe({
       next: (data) => {
         this.atendimentos = data;
+        this.filteredAtendimentos = data;
         this.loading = false;
       },
       error: (err) => {
@@ -39,6 +43,20 @@ export class ListarAtendimentos implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  onSearch(): void {
+    if (this.searchTerm.trim()) {
+      const term = this.searchTerm.toLowerCase().trim();
+      this.filteredAtendimentos = this.atendimentos.filter(
+        (atendimento) =>
+          atendimento.nomePaciente?.toLowerCase().includes(term) ||
+          atendimento.nomeMedicoResponsavel?.toLowerCase().includes(term) ||
+          atendimento.numeroQuarto?.toString().includes(term)
+      );
+    } else {
+      this.filteredAtendimentos = this.atendimentos;
+    }
   }
 
   navegarParaCriar(): void {

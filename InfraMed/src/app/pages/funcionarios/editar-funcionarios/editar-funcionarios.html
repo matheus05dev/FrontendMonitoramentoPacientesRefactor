@@ -4,10 +4,19 @@
       <mat-icon>edit</mat-icon>
       Editar Funcionário
     </h1>
-    <p class="page-subtitle">Atualize os dados do funcionário no sistema</p>
+    <p class="page-subtitle">Atualize os dados do funcionário abaixo</p>
   </div>
 
-  <div class="form-container">
+  <div *ngIf="loading && !form.value.nome" class="loading-container">
+    <p>Carregando dados do funcionário...</p>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <mat-icon>error</mat-icon>
+    <p>{{ error }}</p>
+  </div>
+
+  <div class="form-container" *ngIf="!loading || form.value.nome">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <!-- Informações Básicas -->
       <div class="form-section">
@@ -231,9 +240,9 @@
           <mat-icon>close</mat-icon>
           Cancelar
         </button>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+        <button type="submit" [disabled]="loading || form.invalid" class="btn btn-primary">
           <mat-icon>save</mat-icon>
-          Atualizar Funcionário
+          {{ loading ? 'Atualizando...' : 'Atualizar Funcionário' }}
         </button>
       </div>
     </form>

@@ -1,55 +1,34 @@
 <div class="container">
-  <div class="header-actions">
-    <h1>Lista de Quartos</h1>
+  <h1>Lista de Quartos</h1>
+
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Buscar por número...">
     <button class="primary" (click)="createQuarto()">
       <mat-icon>add</mat-icon>
       Novo Quarto
     </button>
   </div>
 
-  <div *ngIf="loading" class="loading">
-    <mat-spinner diameter="40"></mat-spinner>
-    <p>Carregando quartos...</p>
-  </div>
+  <div *ngIf="loading" class="loading">Carregando...</div>
 
-  <table *ngIf="!loading && quartos.length > 0" class="table">
+  <table *ngIf="!loading && filteredQuartos.length > 0">
     <thead>
       <tr>
         <th>Número</th>
         <th>Localização</th>
         <th>Tipo</th>
+        <th>Capacidade</th>
         <th>Ocupação</th>
-        <th>Status</th>
         <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let quarto of quartos">
+      <tr *ngFor="let quarto of filteredQuartos">
         <td>{{ quarto.numero }}</td>
-        <td>
-          <div class="location">
-            <mat-icon>location_on</mat-icon>
-            {{ quarto.localizacao }}
-          </div>
-        </td>
+        <td>{{ quarto.localizacao }}</td>
         <td>{{ quarto.tipo }}</td>
-        <td>
-          <div class="capacity-indicator">
-            <span>{{ quarto.pacientesIds.length }}/{{ quarto.capacidade }}</span>
-            <div class="capacity-bar">
-              <div class="capacity-fill" 
-                   [style.width.%]="(quarto.pacientesIds.length / quarto.capacidade) * 100">
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <span class="status-badge" 
-                [class.status-available]="quarto.pacientesIds.length < quarto.capacidade"
-                [class.status-occupied]="quarto.pacientesIds.length >= quarto.capacidade">
-            {{ quarto.pacientesIds.length >= quarto.capacidade ? 'Lotado' : 'Disponível' }}
-          </span>
-        </td>
+        <td>{{ quarto.capacidade }}</td>
+        <td>{{ quarto.pacientesIds.length }}/{{ quarto.capacidade }}</td>
         <td class="actions">
           <button class="info" (click)="viewQuarto(quarto.id)" matTooltip="Ver detalhes">
             <mat-icon>visibility</mat-icon>
@@ -65,12 +44,7 @@
     </tbody>
   </table>
 
-  <div *ngIf="!loading && quartos.length === 0" class="no-data">
-    <mat-icon>bedroom_parent</mat-icon>
-    <p>Nenhum quarto encontrado.</p>
-    <button class="primary" (click)="createQuarto()">
-      <mat-icon>add</mat-icon>
-      Criar Primeiro Quarto
-    </button>
+  <div *ngIf="!loading && filteredQuartos.length === 0" class="no-data">
+    Nenhum quarto encontrado.
   </div>
 </div>
